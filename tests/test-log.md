@@ -76,3 +76,12 @@ FREEZE CANDIDATE — HUMAN REVIEW REQUIRED
 #### Workflow / Prompt の修正
 
 - 修正しない。FP-005 の Human Review 暫定判断（成果物内部の数値のみを使った算術的検算は External Knowledge とみなさない）は、Workflow 改訂の候補として保持する
+
+### 2026-10-06 Test 01-1 Skill Compatibility Check
+
+- 目的: `skills/meaning-audit` と既存 Prompt（`prompts/artifact-only-audit.md`）の互換性を確認する（新しい Finding を正解として扱わない）
+- 対象: Test 01-1 と同じ監査対象・同じ入力形式
+- Audit Model: Claude Opus 5.5（文脈を持たない subagent。SKILL.md と references/ のみを参照）
+- 結果: 13 セクション、Mode B の自動判定と定型文、禁止事項の遵守、Human Decision の空欄はすべて一致。Run 01B の Finding 26 件中、一致 21・一部一致 4・不一致 1。Skill Run のみの Finding 4 件。KS は 7 件中 5 件が一致。Document Class の主副が逆になった
+- 記録: [test-01-1-skill-compatibility.md](../examples/01-ai-presentation/review/test-01-1-skill-compatibility.md)。Skill Run の Report 原本は Private Evidence Vault
+- Human Review Status: 未実施（SC-1〜SC-4）
