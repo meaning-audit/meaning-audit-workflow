@@ -113,16 +113,21 @@ Finding は削除・修正していません。各 Finding について、成果
 
 ## 5. Public / Private の境界
 
-| ファイル | 層 | 備考 |
-|---|---|---|
-| `private/test-01-1/audit-object.pdf` | Private | 元の PDF |
-| `private/test-01-1/run-01b-artifact-only.original.md` | Private | AI が出力した Report の原本（実名入り・無編集） |
-| `private/test-01-1/mode-comparison.original.md` | Private | 元の比較レビュー（実名入り） |
-| `private/test-01-1/source-metadata.original.md` | Private | 資料名、発行元、ハッシュ値、入手経路 |
-| `private/test-01-1/page-mapping.md` | Private | ページ番号と実際の内容の対応 |
-| `private/test-01-1/*.original.md`（その他） | Private | 匿名化する前の README・Test Log |
-| [../audit/test-01-1-public.md](../audit/test-01-1-public.md) | Public | 匿名化した Report |
-| [mode-comparison.md](mode-comparison.md) | Public | 匿名化した比較レビュー |
-| この文書 | Public | Human Review の記録 |
+Private Evidence Layer は、このリポジトリとは別の非公開の Evidence Vault（git 管理外）に保管しています。Test ごとに同じ構成を使います。
 
-`private/` は `.gitignore` で除外しています。
+| Vault 内の場所 | 内容 |
+|---|---|
+| `test-01-1/source/` | 元の資料（第三者の著作物。ファイル名・内容は無変更） |
+| `test-01-1/private-audit/` | AI が出力した Report の原本（実名入り・無編集） |
+| `test-01-1/review/` | 匿名化する前の比較レビュー・Test 記録 |
+| `test-01-1/metadata/` | manifest（SHA-256、ページ数、権利・公開の扱い、関連記録）、ページの対応表、匿名化の対応表 |
+
+公開リポジトリにあるもの:
+
+| ファイル | 内容 |
+|---|---|
+| [../audit/test-01-1-public.md](../audit/test-01-1-public.md) | 匿名化した Report |
+| [mode-comparison.md](mode-comparison.md) | 匿名化した比較レビュー |
+| この文書 | Human Review の記録 |
+
+元の資料は、公開リポジトリにコピー・commit・push しません。`.gitignore` の `private/` は、ローカルで誤ってコミットするのを防ぐために残しています。
