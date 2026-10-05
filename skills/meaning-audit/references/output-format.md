@@ -1,10 +1,10 @@
-<!-- Generated from Meaning Audit Workflow v1.0 source files: workflow/output-format.md. Content is reproduced from v1.0; only links and headings were adjusted for use inside the skill. Edit the source files, not this copy. -->
+<!-- Packaged from Meaning Audit Workflow v1.0 (canonical source: https://github.com/meaning-audit/meaning-audit-workflow, workflow/output-format.md). Packaging revision: repository-specific paths and maintainer instructions were replaced so that this skill is self-contained. Method, Status, Finding Types, and Workflow steps are unchanged. -->
 
 # Output Format: Meaning Audit Report v1.0
 
 v1.0 の標準成果物は Meaning Audit Report です。以下の 13 セクションを、この順序で必ず含めます。該当する内容が無いセクションも省略せず、「該当なし」と書きます。
 
-プロンプト（`prompts/`）に埋め込まれたテンプレートは、この文書を正とします。
+この Skill では、この文書のテンプレートを正とします。
 
 ---
 
@@ -14,7 +14,7 @@ v1.0 の標準成果物は Meaning Audit Report です。以下の 13 セクシ�
 # Meaning Audit Report
 
 - Workflow version: Meaning Audit Workflow v1.0
-- Prompt: <使用したプロンプトのファイル名>
+- Prompt: skill: meaning-audit
 - Auditor: <AI モデル名 / 人間の監査者名>
 - Date: <YYYY-MM-DD>
 - Review status: Human Review 未実施

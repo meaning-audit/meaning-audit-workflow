@@ -1,4 +1,4 @@
-<!-- Generated from Meaning Audit Workflow v1.0 source files: workflow/finding-types.md. Content is reproduced from v1.0; only links and headings were adjusted for use inside the skill. Edit the source files, not this copy. -->
+<!-- Packaged from Meaning Audit Workflow v1.0 (canonical source: https://github.com/meaning-audit/meaning-audit-workflow, workflow/finding-types.md). Packaging revision: repository-specific paths and maintainer instructions were replaced so that this skill is self-contained. Method, Status, Finding Types, and Workflow steps are unchanged. -->
 
 # Finding Types v1.0
 
@@ -33,7 +33,7 @@ Finding Type は、Finding Ledger で Meaning Shift の種類を記録するた�
 
 1. 内容欄に、何が起きているかを具体的に書く
 2. 新しい Finding Type を作らない
-3. 繰り返し現れる場合は、リポジトリの `tests/post-freeze-candidates.md` に候補として記録する
+3. 繰り返し現れる場合は、Human Review Required に挙げ、必要に応じて Human Review で記録する
 
 ## Finding Type と Status の関係
 

@@ -31,12 +31,12 @@ Meaning Audit はファクトチェックではない。根拠から提示され
 - UNKNOWN を推測で埋めること（`UNKNOWN → plausible assumption → fact` の禁止）。INFERRED を後で KNOWN として扱うこと
 - Mode B で成果物の主張を「誤り」「虚偽」「不正確」と断定すること
 - Workflow に無い概念・分類・Finding Type を作ること（当てはまらなければ `OTHER` を使い、内容を具体的に書く）
-- Evidence Boundary の外の情報を、自ら検索・取得して判定に使うこと。ユーザーが Source として指定したものだけを取得する
+- Evidence Boundary の外の情報を、ユーザーの許可なく追加すること（自ら検索・取得して判定に使わない）。ユーザーが外部検索・取得を Evidence として明示的に許可した場合は、その範囲を Evidence Boundary に含めて記録したうえで利用できる
 
 ## 入力の受け取り
 
 1. 監査対象（Audit Object）、元資料（Source。無くてもよい）、監査目的（Audit Purpose。無くてもよい）を確認する。不足していても監査は拒否しない
-2. ファイルは Read で読む。PDF やスライドでテキスト層が無いページは、ページ画像として読む。図・グラフ・画像が読めない場合は推測で記述せず、Limitations に書く
+2. ファイルは Read で読む。テキスト層で読めない重要な情報（画像だけのページ、図・グラフ・配置など）がある場合は、利用できればページ画像・Visual 情報を確認する。読めない場合は推測で記述せず、Limitations に書く
 3. Audit Purpose の指定が無ければ、既定値「Meaning Shift の所在を明らかにする」を使い、そのことを明記する
 4. Report の言語はユーザーの指定に従う。指定が無ければ日本語。見出し・Status・Finding Type・情報状態のラベルは英語のまま
 
@@ -123,7 +123,7 @@ STEP 8 は人間が行う。Human Review Required に「レビューで確認す
 
 1. Audit Object / 2. Audit Mode / 3. Document Class / 4. Audit Purpose / 5. Evidence Boundary / 6. Overall Finding / 7. Key Meaning Shifts / 8. Meaning Trace / 9. Finding Ledger / 10. Critical Unknowns / 11. Source Verification Required / 12. Human Review Required / 13. Limitations
 
-Report の冒頭に、Workflow version（Meaning Audit Workflow v1.0）、Prompt（`skill: meaning-audit`）、Auditor（モデル名）、Date、Review status（Human Review 未実施）を書く。思考過程の全文は出力しない。ユーザーが保存を求めた場合だけ、指定の場所に Markdown で保存する。
+Report の冒頭に、Workflow version（Meaning Audit Workflow v1.0）、Prompt（`skill: meaning-audit`）、Auditor（モデル名）、Date、Review status（Human Review 未実施）を書く。思考過程の全文は出力しない。Report は会話に出力し、ユーザーが保存を求めた場合だけ、指定の場所に Markdown ファイルとして保存する。
 
 ## 出力前の自己確認
 
@@ -138,7 +138,9 @@ Report の冒頭に、Workflow version（Meaning Audit Workflow v1.0）、Prompt
 
 | ファイル | 内容 |
 |---|---|
-| [references/workflow.md](references/workflow.md) | STEP 0〜8 の全文、Status と情報状態の定義、付録（Document Classes、Human Review、Audit Modes） |
+| [references/workflow.md](references/workflow.md) | STEP 0〜8 の全文、Status と情報状態の定義、付録（Document Classes、Human Review、Audit Modes、Terminology） |
 | [references/output-format.md](references/output-format.md) | Report のテンプレートと各セクションの記入規則 |
 | [references/finding-types.md](references/finding-types.md) | Finding Type 14 種と OTHER の扱い |
 | [references/limitations.md](references/limitations.md) | 方法と AI 実行の既知の限界 |
+
+この Skill は Meaning Audit Workflow v1.0 をインストールして使える形にしたもの（installable implementation）であり、実行ごとに同じ結果を出す監査エンジンではない。同じ入力でも、Finding の数・まとめ方・Finding Type・Status は実行ごとに変わりうる。
