@@ -85,3 +85,13 @@ FREEZE CANDIDATE — HUMAN REVIEW REQUIRED
 - 結果: 13 セクション、Mode B の自動判定と定型文、禁止事項の遵守、Human Decision の空欄はすべて一致。Run 01B の Finding 26 件中、一致 21・一部一致 4・不一致 1。Skill Run のみの Finding 4 件。KS は 7 件中 5 件が一致。Document Class の主副が逆になった
 - 記録: [test-01-1-skill-compatibility.md](../examples/01-ai-presentation/review/test-01-1-skill-compatibility.md)。Skill Run の Report 原本は Private Evidence Vault
 - Human Review Status: 未実施（SC-1〜SC-4）
+
+### 2026-10-06 Skill Runtime and Variance Validation
+
+- 目的: Skill の実行ごとのばらつきの観察（S2, S3 を追加）と、実際の Claude Code へのインストールでの動作確認
+- Human Review Decisions: SC-1 ACCEPT（Workflow compatible。output equivalent とは表現しない）、SC-2 ACCEPT、SC-3 HOLD（Run Variance / Compatibility Delta として記録）、SC-4 REVISE（Packaging Revision として実施）
+- Variance Test: Run 01B と Skill Run S1〜S3 の 4 Run を cluster で比較。34 cluster のうち 23 が 4/4、3 が 3/4、2 が 2/4、6 が 1/4。Status は 4/4 の cluster のうち 11 で変動した。Finding 数は 26〜31
+- Runtime Test: Personal Skill としてインストールし、`/meaning-audit` と自然言語の依頼（「Meaning Audit」を含む）の両方で Skill が動き、13 セクションの Report を出した
+- 記録: [skill-runtime-validation.md](../examples/01-ai-presentation/review/skill-runtime-validation.md)。各 Run の Report 原本は Private Evidence Vault
+- Skill の調整: していない（観察のみ）
+- Human Review Status: RV-1〜RV-5 未実施

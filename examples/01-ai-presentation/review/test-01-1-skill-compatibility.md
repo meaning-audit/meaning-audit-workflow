@@ -6,7 +6,7 @@
 - 比較元: Run 01B（既存 Prompt）→ [../audit/test-01-1-public.md](../audit/test-01-1-public.md)
 - 比較先: Skill Run（`skill: meaning-audit`）。Report の原本は実名・原値を含むため Private Evidence Vault に保管し、公開しない
 - 匿名化: 公開版 Report と同じ方針（固有名詞は匿名化、原値は一般化）
-- Status: AI による比較。Human Review 未実施
+- Status: AI による比較。Human Review 実施済み（SC-1〜SC-4、下の 6）。追加の Run と実環境での確認は [skill-runtime-validation.md](skill-runtime-validation.md)
 
 ## 実行条件
 
@@ -114,7 +114,7 @@ Skill Run だけにある Finding（4 件）:
 
 | # | 確認すべき問い | Human Decision |
 |---|---|---|
-| SC-1 | この程度の差（Type・Status・粒度のばらつき、KS 7 件中 5 件一致）を「Workflow 互換」とみなしてよいか | |
-| SC-2 | 同じ Prompt の 2 回目の実行と比べて、Skill 由来の差と実行ごとのばらつきを区別する必要があるか | |
-| SC-3 | Skill Run だけにある 4 件、Run 01B だけにある F-26 を、Test 01-1 の記録にどう扱うか（どちらも正解としては扱っていない） | |
-| SC-4 | `references/` に残るリポジトリ内ファイルへの言及を、Skill 用にどう扱うか（Workflow 本体は変更しない前提） | |
+| SC-1 | この程度の差（Type・Status・粒度のばらつき、KS 7 件中 5 件一致）を「Workflow 互換」とみなしてよいか | ACCEPT。Workflow compatible として扱う。output equivalent とは表現しない |
+| SC-2 | 同じ Prompt の 2 回目の実行と比べて、Skill 由来の差と実行ごとのばらつきを区別する必要があるか | ACCEPT。同じ条件で Skill を追加 2 回実行する（S2, S3） |
+| SC-3 | Skill Run だけにある 4 件、Run 01B だけにある F-26 を、Test 01-1 の記録にどう扱うか（どちらも正解としては扱っていない） | HOLD。Workflow 変更の材料にせず、Run Variance / Compatibility Delta として記録する |
+| SC-4 | `references/` に残るリポジトリ内ファイルへの言及を、Skill 用にどう扱うか（Workflow 本体は変更しない前提） | REVISE。`skills/meaning-audit/` 配下だけを Packaging Revision として修正する |
