@@ -126,7 +126,7 @@ Test 01 の目的は、「Meaning Audit が正しいことを証明すること�
 
 ## 記録: Test 01-1: Presentation Artifact — Generation Provenance Unknown（2026-10-06）
 
-Status: AI による実行・比較準備と、Human Review の一部（HR-01, HR-02, FP-005 の暫定判断）まで完了。下の観察結果は暫定です。
+Status: **FREEZE CANDIDATE — HUMAN REVIEW REQUIRED**（Freeze の条件と残りの Human Decision は [review/test-01-1-human-review.md](review/test-01-1-human-review.md) の 8）。下の観察結果は暫定です。
 
 HR-01: 監査対象が AI 生成であることは確認できなかったため、Test 01-1 は「AI-Generated Presentation」とは確定せず、Generation Provenance Unknown のプレゼンテーション資料として扱います。
 
@@ -180,3 +180,69 @@ HR-02: 公開版は匿名化しています。実名入りの原本は Private E
 | [audit/test-01-1-public.md](audit/test-01-1-public.md) | 匿名化した Audit Report |
 | [review/test-01-1-human-review.md](review/test-01-1-human-review.md) | Human Review の記録（HR-01, HR-02, FP-005, R-6） |
 | [review/mode-comparison.md](review/mode-comparison.md) | モード比較（Run 01A 未実行のため限定的） |
+
+---
+
+## 準備: Test 01-2: Known-Source AI-Generated Presentation
+
+Status: 準備済み・監査対象待ち（監査は開始していない）
+
+Test 01-1 では、元資料が無く生成来歴も不明だったため、Test 01 本来の目的（AI 生成プレゼンでの Mode A と Mode B の比較）を検証できませんでした。Test 01-2 はその条件を満たすケースで行います。
+
+### 開始条件
+
+次がすべて揃ったら開始します。
+
+| 条件 | 内容 |
+|---|---|
+| Source Document が既知 | AI がプレゼンを生成する元にした文書・資料が手元にある |
+| Generation Tool が既知 | 生成に使ったツール・モデル名・日付が分かる |
+| AI 生成プレゼンがある | Source から AI が生成したプレゼン（PDF または画像で書き出せるもの） |
+| Mode A と B を両方実行できる | Source とプレゼンの両方を監査に投入できる |
+| 公開の扱いが決まっている | Source とプレゼンを公開リポジトリに置けるか。置けない場合は Test 01-1 と同じ二層構造（Evidence Vault の `test-01-2/`）にする |
+| 生成過程の記録 | 生成時のプロンプト・設定、人が編集した箇所の有無（PFC-004 の観察用） |
+
+可能であれば、Human 自身が用意した Source から生成したプレゼンを使うと、権利と公開の問題を避けやすくなります。
+
+### 実行設計
+
+| Run | Mode | Prompt | 入力 | 出力 |
+|---|---|---|---|---|
+| Run 01A | Source-Grounded | `prompts/source-grounded-audit.md`（無改変） | プレゼン ＋ Source | `audit/test-01-2-run-01a-source-grounded.md` |
+| Run 01B | Artifact-Only | `prompts/artifact-only-audit.md`（無改変） | プレゼンのみ | `audit/test-01-2-run-01b-artifact-only.md` |
+
+独立性の手順:
+
+1. Run 01A と Run 01B は、それぞれ別の監査者（この会話の文脈を持たない別々の subagent、または別のチャット）で実行する
+2. Run 01B の監査者には、Source、Run 01A の結果、Source から導いた Finding のいずれも渡さない。読めるファイルをプレゼンとプロンプトだけに限定し、Web 検索も使わせない
+3. Run 01A の監査者にも Run 01B の結果を渡さない
+4. 両方の Run が終わってから比較を始める。比較は、Run を実行した監査者とは別のコンテキストで行う
+5. プレゼンの入力形式（画像の解像度、テキスト層）は両方の Run で同じにする
+
+### 観察項目
+
+両方の Run の後、`review/test-01-2-mode-comparison.md` に記録します。
+
+| # | 観察項目 | 見方 |
+|---|---|---|
+| 1 | Mode B で検出できた Meaning Shift | Run 01B の Finding のうち、Run 01A でも同じ箇所・同じ趣旨で検出されたもの |
+| 2 | Mode A でしか検出できなかった Meaning Shift | Source との照合によってのみ見つかったもの（Compression で落ちた限定条件など） |
+| 3 | Mode B の False Suspicion | Run 01B が UNTRACEABLE・INFERRED とした懸念のうち、Source では支えられていたもの |
+| 4 | Source によって判定が変わった Finding | 同じ箇所で Status や情報状態が変わったもの |
+| 5 | Compression loss | Source の限定条件・範囲・不確実性がプレゼンで消えた箇所 |
+| 6 | Framing amplification | 見出し・強調・順序によって Source より強く提示された箇所 |
+| 7 | Visual Claim | 図・グラフ・配置が Source 以上の主張をした箇所 |
+| 8 | Context loss | Source の文脈・前提がプレゼンで失われた箇所 |
+| 9 | Generation provenance の有用性 | 生成ツール・生成過程が分かっていることで、Finding の解釈が変わったか（PFC-004） |
+
+あわせて、Test 01-1 で観察した FP-001〜FP-006、R-6 で見られた「1 つの Finding に複数の所見」が再び起きるかを記録します。
+
+### Test 01-2 開始時に Human から必要なもの
+
+1. Source Document（または Vault への保管先）
+2. AI 生成プレゼン（PDF または画像）
+3. Generation Tool、生成日、生成時のプロンプト・設定
+4. 人による編集の有無
+5. 公開の扱い（公開リポジトリに置けるか）
+6. Audit Purpose（空欄なら既定値）
+
