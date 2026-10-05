@@ -58,7 +58,7 @@ Meaning Audit Workflow v1.0 のテスト実行記録です。1 回の監査実�
 - Human Review: [test-01-1-human-review.md](../examples/01-ai-presentation/review/test-01-1-human-review.md)
 - Comparison: [mode-comparison.md](../examples/01-ai-presentation/review/mode-comparison.md)（Run 01A が無いため限定的）
 - Human Review Status: 一部実施（HR-01, HR-02、FP-005 の暫定判断）。R-3〜R-9 は整理済みで Human Decision 待ち。公開版と原本の Meaning Preservation は AI による照合済み（UNCERTAIN 2 件）で Human 確認待ち
-- Public 版の一般化: 2026-10-06 に、Finding の成立に不要な原値（金額・割合・件数など）を一般化した。一般化する前の公開版は書き換え前のコミットの履歴に残っている
+- Public 版の一般化: 2026-10-06 に、Finding の成立に不要な原値（金額・割合・件数など）を一般化した。同日、一般化する前の版を git の履歴からも除去した（`git filter-repo` による履歴の書き換えと force-with-lease push）。書き換え前のコミットは、GitHub 上で SHA を直接指定すると引き続き表示される
 
 ```text
 Test 01-1 Status:

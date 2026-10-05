@@ -211,7 +211,7 @@ AI Recommendation は判断材料の整理であり、Human Decision ではあ�
 |---|---|---|
 | Private Evidence を非公開の Evidence Vault へ移行済み | 達成 | Vault の `test-01-1/` に、元の資料と原本の記録 9 ファイル。manifest に SHA-256 を記録し、移動の前後でハッシュ値が一致 |
 | Public / Private の境界が明確 | 達成 | 上の 5 |
-| Public 版の再特定リスクを低減済み | 達成（注記あり） | 原値を一般化した。ただし一般化する前の公開版が git の履歴（書き換え前のコミット）に残っている |
+| Public 版の再特定リスクを低減済み | 達成（注記あり） | 原値を一般化し、2026-10-06 に git の履歴も書き換えた（main の全履歴で原値 0 件）。ただし GitHub は、書き換え前のコミットを SHA を直接指定すれば引き続き表示する。完全な削除には GitHub Support への依頼が必要 |
 | Public 版と Private 版の Meaning Preservation を確認済み | AI による照合済み・Human 確認待ち | 上の 6（UNCERTAIN 2 件） |
 | R-3〜R-9 を整理済み | 達成（Human Decision 待ち） | 上の 7 |
 | FP-001〜006 を記録済み | 達成 | [../../../tests/failure-patterns.md](../../../tests/failure-patterns.md) |
@@ -228,4 +228,118 @@ APPROVED / FINAL にはしていません。Freeze の確定には、少なく�
 
 - 6 の UNCERTAIN 2 件（F-05, F-23）
 - 7 の R-3〜R-9
-- git 履歴に残る一般化前の数値の扱い
+- GitHub に残る書き換え前のコミットの扱い（GitHub Support への削除依頼をするか）
+
+未決事項の詳細は下の 9 にまとめています。
+
+---
+
+## 9. Final Freeze Review（未決事項の整理）
+
+2026-10-06、git 履歴の書き換え後に整理しました。AI Recommendation は 7 の内容を維持しており、Human Decision ではありません。Human Decision 欄は空欄です。
+
+### F-05
+
+**Current Issue**
+公開版で画像の具体的な描写を「損失を連想させる写真」と一般化したため、Visual Claim の解釈が一段加わった可能性がある（6 の UNCERTAIN）。
+
+**Existing Evidence**
+
+| 観点 | Private 原本 | Public 版 |
+|---|---|---|
+| Visual Claim（KS-3 Context / Pragmatics） | 画像の具体的な描写（何が写っているか）を書いたうえで、「損失回避の Framing を形成する」と述べる | 「損失を連想させる写真と…で損失回避の Framing をつくる」 |
+| Finding Ledger（F-05） | 「画像（具体的な描写）で強められている」 | 「画像で強められている」 |
+| Status / 情報状態 | UNTRACEABLE / UNKNOWN | UNTRACEABLE / UNKNOWN（同じ） |
+
+- 主セッションが p9 の画像を直接確認した。原本の描写（硬貨が容器からこぼれ、路面の排水口の近くに散らばり、手が伸びている）は画像と一致する
+- 「損失回避の Framing」という解釈は原本にもある。公開版で加わったのは、描写（何が写っているか）を省いて解釈（損失を連想させる）だけを書いた点で、読み手が描写から解釈を検証できなくなっている
+- 参考: Skill 互換性確認の実行では、同じ写真の読み取りを INFERRED としていた。原本 Run 01B は写真の読み取りに情報状態を付けていない
+
+**Meaning Preservation**: Finding の結論（根拠なしの損失回避 Framing、UNTRACEABLE）は維持されている。描写から解釈への段階は公開版で圧縮されている。
+
+**Interpretation の追加**: あり（描写の省略によって、解釈が描写の代わりに置かれた）。ただし解釈そのものは原本と同じ。
+
+**AI Recommendation**: REVISE（公開版の KS-3 の表現を、描写と解釈を分けた形に戻すかを検討する。例: 「硬貨がこぼれて排水口の近くに散らばる写真（描写）」と「損失回避の Framing（解釈、INFERRED）」。描写には企業を特定する情報は含まれない）
+
+**Possible Human Decisions**: ACCEPT / REVISE / HOLD / INVESTIGATE / NO ACTION
+
+**Human Decision**:
+
+### F-23
+
+**Current Issue**
+公開版の KS-7 の Meaning Trace が、原本より不一致を強く読ませる可能性がある（6 の UNCERTAIN）。
+
+**Existing Evidence**
+
+| 観点 | Private 原本 | Public 版 |
+|---|---|---|
+| Meaning Trace（KS-7 Interpretation） | 「本」「種類」と単位が揺れる。p14 の 1 講座の動画本数の合計を検算で示す（値のみ。提供数との比較はしない）。画面の件数表示の対象は UNKNOWN | 「本」「種類」と単位が揺れる。「1 講座分の動画本数の合計は、表示された提供本数より少ない（KNOWN: 検算）」。画面の件数表示の対象は UNKNOWN |
+| Finding Ledger（F-23） | 1 講座の合計と画面の件数表示が、提供数とどう関係するか示されていない | 同じ趣旨 |
+| Status / 情報状態 | PARTIALLY TRACEABLE / CONFLICTING（単位）・UNKNOWN（総数） | 同じ |
+
+- Claim strength: 公開版の「提供本数より少ない」は、1 講座の合計と全体の提供数を比べる形になっている。1 講座の本数が全体より少ないことは不一致を意味しないが、並べ方によっては不一致の根拠のように読める。原本はこの比較をしていない
+- Finding strength: Ledger の Finding は原本と同じ（関係が示されていない）。強く読ませる可能性があるのは Meaning Trace の 1 文だけ
+- Status: 変化なし
+
+**AI Recommendation**: REVISE（公開版 KS-7 の該当文を、原本と同じく比較をしない表現にするかを検討する。例: 「p14 の表から 1 講座分の動画本数の合計は算出できるが、表示された提供数との関係は示されていない」）
+
+**Possible Human Decisions**: ACCEPT / REVISE / HOLD / INVESTIGATE / NO ACTION
+
+**Human Decision**:
+
+### R-3（F-01）
+
+**Current Issue**: 表示倍率「20倍」の不一致を、円建て数値の側の問題として読むのが妥当か。KS-1 の要約では区別が弱い。
+**Existing Evidence**: p6 を直接確認した。ドル建ての倍率は約 20 倍、円建ての倍率は約 15 倍。Ledger はこの区別を保っている。Skill 互換性確認の実行でも同じ読み方だった（S-06）。
+**AI Recommendation**: ACCEPT
+**Possible Human Decisions**: ACCEPT / REVISE / HOLD / INVESTIGATE / NO ACTION
+**Human Decision**:
+
+### R-4（F-04）
+
+**Current Issue**: 見出しとグラフのずれ（Title-body）の判定は妥当か。
+**Existing Evidence**: p8 を直接確認した。見出しの年数・語はグラフに無く、2 時点の比較である。Skill 互換性確認の実行でも同じ Finding（S-09）。
+**AI Recommendation**: ACCEPT
+**Possible Human Decisions**: ACCEPT / REVISE / HOLD / INVESTIGATE / NO ACTION
+**Human Decision**:
+
+### R-5（F-07, F-12）
+
+**Current Issue**: Visual Claim の解釈（象限図の円の配置、目盛りの無い比較の棒）は妥当か。F-12 の情報状態 CONFLICTING は妥当か。
+**Existing Evidence**: F-07: p10 に配置の根拠データが無い。F-12: p29 を直接確認し、比較対象に金額・目盛りが無いことを確認した。F-12 の CONFLICTING は、食い違いというより費用範囲の不提示とも読める。Skill 互換性確認の実行は、F-12 に当たる内容を 2 件に分けた（S-22: UNKNOWN、S-23: KNOWN）。
+**AI Recommendation**: F-07 → ACCEPT ／ F-12 → REVISE
+**Possible Human Decisions**: ACCEPT / REVISE / HOLD / INVESTIGATE / NO ACTION
+**Human Decision**: F-07:　　F-12:
+
+### R-6（F-14, F-20, F-22, F-24）
+
+**Current Issue**: 推測が強すぎる可能性。4 件とも 1 つの Finding に複数の所見を含む。
+**Existing Evidence**: 4 の整理（Artifact から確認できること、Inference が始まる地点、Finding Type と Status の妥当性、複数の所見）。Skill 互換性確認の実行では、F-14 に当たる Finding は母数の推測をしていない（S-18）。F-24 に当たる内容は 2 件に分かれた（S-28, S-30）。
+**AI Recommendation**: F-14 → HOLD ／ F-20 → REVISE ／ F-22 → REVISE ／ F-24 → HOLD
+**Possible Human Decisions**: ACCEPT / REVISE / HOLD / INVESTIGATE / NO ACTION
+**Human Decision**: F-14:　　F-20:　　F-22:　　F-24:
+
+### R-7（F-03, F-18）
+
+**Current Issue**: Source との対応が曖昧な箇所。
+**Existing Evidence**: F-03: 出典表記がどの図に係るかは、Public Source 3 を見れば確かめられる可能性がある。F-18: 導入企業の数値の定義は Client A〜C の測定記録が必要で、入手の見込みが低い。
+**AI Recommendation**: F-03 → INVESTIGATE ／ F-18 → HOLD
+**Possible Human Decisions**: ACCEPT / REVISE / HOLD / INVESTIGATE / NO ACTION
+**Human Decision**: F-03:　　F-18:
+
+### R-8（Run 01A）
+
+**Current Issue**: Test 01-1 で Run 01A（Source-Grounded）を実行するか。
+**Existing Evidence**: 資料全体の Source は無い。公開統計（Public Source 1〜3）だけで p6〜p8 に限った Mode A は可能。Mode A と B の比較は Test 01-2 で設計済み。
+**AI Recommendation**: NO ACTION
+**Possible Human Decisions**: ACCEPT / REVISE / HOLD / INVESTIGATE / NO ACTION
+**Human Decision**:
+
+### R-9（Report の粒度）
+
+**Current Issue**: Finding 26 件、Human Review 17 項目という粒度は運用上適切か。
+**Existing Evidence**: FP-006 に記録済み。R-6 の 4 件はすべて複数の所見を含む。Skill 互換性確認の実行では Finding 30 件で、まとめ方・分け方に差が出た。
+**AI Recommendation**: HOLD
+**Possible Human Decisions**: ACCEPT / REVISE / HOLD / INVESTIGATE / NO ACTION
+**Human Decision**:
