@@ -3,7 +3,7 @@
 - Date: 2026-10-06
 - 位置づけ: `skills/meaning-audit` は Meaning Audit Workflow v1.0 の installable implementation。実行ごとに同じ結果を出す監査エンジンではない
 - Workflow: v1.0（変更なし）
-- Status: AI による記録。Human Review 未実施
+- Status: Human Review 実施済み（RV-1〜RV-5、下の 9）。Skill Public Status: **PUBLICLY USABLE — WORKFLOW v1.0 IMPLEMENTATION**
 - 匿名化: 監査対象は Test 01-1 と同じ第三者の資料のため、公開版 Report と同じ方針で、固有名詞は匿名化し、原値は一般化している。各 Run の Report 原本は Private Evidence Vault に保管
 
 ---
@@ -212,7 +212,7 @@ C-27。S2 で再び出現した（2/4）。S1・S3 では出現していない�
 
 ## 6. 所見
 
-- 4 Run に共通する中核: 34 cluster のうち 23 cluster が 4 Run すべてに現れた。Report 構造、Mode 判定、禁止事項の遵守は 4 Run で一致した
+- 4 回の独立 Run すべてで、意味的に同種の指摘が再検出された cluster が 23 あった（34 cluster 中）。ただし Finding Type、Status、粒度には実行間の差がある。Report 構造、Mode 判定、禁止事項の遵守は 4 Run で一致した
 - 実行ごとのばらつき: Finding 数（26〜31）、Status の PARTIALLY と UNTRACEABLE の境界、Finding Type の選び方、Finding のまとめ方・分け方は Run ごとに変わる。Skill の 3 Run の間でも同じ種類の変動がある
 - Skill と既存 Prompt の差: Skill の 3 Run はそろって Document Class を C（主）とし、Warrant の欠落を扱う cluster の一部を PARTIALLY TRACEABLE とした。01B は A（主）で、同じ cluster を UNTRACEABLE とした。Skill の指示の形による差の可能性があるが、01B は 1 回だけの実行なので、既存 Prompt 側の実行ごとのばらつきとは区別できていない
 - 1 Run だけの cluster（6 件）は、すべて成果物の中の記述の食い違いや前提の不一致を扱うもので、どの Run も成果物全体を網羅的に照合してはいないことを示す
@@ -235,8 +235,92 @@ C-27。S2 で再び出現した（2/4）。S1・S3 では出現していない�
 
 | # | 確認すべき問い | Human Decision |
 |---|---|---|
-| RV-1 | 4/4 の 23 cluster を「Workflow v1.0 で安定して見える Meaning Shift」として扱ってよいか | |
-| RV-2 | Status の揺れ（4/4 の 23 cluster のうち 11 cluster）を、FP-003・FP-006 と同じ論点として扱うか | |
-| RV-3 | Skill の 3 Run がそろって Class C（主）とした点を、Skill による差として調べるか（既存 Prompt の追加実行が必要） | |
-| RV-4 | cluster のまとめ方（34 cluster）は妥当か | |
-| RV-5 | Skill を Public v1.0 相当の installable implementation として案内してよいか | |
+| RV-1 | 4/4 の 23 cluster を「Workflow v1.0 で安定して見える Meaning Shift」として扱ってよいか | ACCEPT（表現を限定。下の 9） |
+| RV-2 | Status の揺れ（4/4 の 23 cluster のうち 11 cluster）を、FP-003・FP-006 と同じ論点として扱うか | HOLD |
+| RV-3 | Skill の 3 Run がそろって Class C（主）とした点を、Skill による差として調べるか（既存 Prompt の追加実行が必要） | INVESTIGATE（P2・P3 を実施。下の 10） |
+| RV-4 | cluster のまとめ方（34 cluster）は妥当か | HUMAN REVIEW REQUIRED / HOLD |
+| RV-5 | Skill を Public v1.0 相当の installable implementation として案内してよいか | ACCEPT |
+
+---
+
+## 9. Human Review Decisions（RV-1〜RV-5）
+
+| ID | Human Decision | 記録の仕方 |
+|---|---|---|
+| RV-1 | ACCEPT | 4 回の独立 Run すべてで、意味的に同種の指摘が再検出された cluster が 23 あった。「安定した Finding」「再現性が証明された Finding」とは表現しない。Finding Type、Status、粒度には実行間の差がある |
+| RV-2 | HOLD | 23 cluster のうち 11 cluster での Status の変動、および Finding Type の変動を、既存の FP に統合しない。**Runtime Variance Observation** として独立した観測結果のまま保持する。Workflow 変更の理由としては採用しない |
+| RV-3 | INVESTIGATE | 既存 Prompt を変えずに、Run 01B と同じ条件で追加 2 回（P2・P3）実行した。結果は下の 10 |
+| RV-4 | HUMAN REVIEW REQUIRED / HOLD | 34 cluster は AI が作った Runtime Comparison 用の分析単位であり、Meaning Audit の正式な分類・正本ではない。4/4 の 23 cluster と 3/4 の 3 cluster は「高頻度で再検出された候補群」として記録してよい。「34 種類の Meaning Failure が見つかった」とは表現しない |
+| RV-5 | ACCEPT | Skill を一般利用できる Skill として案内してよい。位置づけは **installable implementation of Meaning Audit Workflow v1.0**。deterministic audit engine、validated audit engine、output-equivalent implementation、guaranteed reproducibility という表現は使わない |
+
+### Skill 固有の運用上の指示（ACCEPT）
+
+1 の A〜D（ページ画像の確認、許可なく Evidence Boundary の外の情報を追加しないこと、求められた場合だけの保存、Prompt 欄の `skill: meaning-audit`）は、Human Review で承認された。Canonical Workflow の変更ではなく、Skill の Runtime / Packaging 上の指示として扱う。
+
+### Invocation の正式記録
+
+| 呼び出し方 | 結果 |
+|---|---|
+| Explicit Invocation: `/meaning-audit` | SUCCESS |
+| Natural Language: 「この提案書をMeaning Auditしてください。」 | Skill の自動選択 SUCCESS |
+
+実行シェルについての注意: Git Bash から `claude -p "/meaning-audit ..."` を実行すると、Git Bash のパス変換で `/meaning-audit` がファイルパスに書き換えられる。これは Skill の不具合ではなく、実行シェルに固有の挙動。PowerShell、または Claude Code の対話画面では起きない。
+
+---
+
+## 10. Prompt Run P2 / P3（RV-3 の追加検証）
+
+条件: 既存 Prompt（`prompts/artifact-only-audit.md`、変更なし）、Run 01B と同じ入力・依頼、過去の Run の結果は見せない、外部検索なし、文脈を持たない独立した subagent。
+
+| Run | 指示 | Audit Mode | 主 Class | 副 Class | Finding | TRACEABLE | PARTIALLY | UNTRACEABLE | UNKNOWN |
+|---|---|---|---|---|---|---|---|---|---|
+| Run 01B | Prompt | Mode B | A | C | 26 | 0 | 14 | 12 | 0 |
+| P2 | Prompt | Mode B | C | A | 25 | 0 | 16 | 8 | 1 |
+| P3 | Prompt | Mode B | A | C | 21 | 0 | 13 | 8 | 0 |
+| S1 | Skill | Mode B | C | A | 30 | 1 | 18 | 9 | 2 |
+| S2 | Skill | Mode B | C | A | 28 | 0 | 18 | 8 | 2 |
+| S3 | Skill | Mode B | C | A | 31 | 1 | 16 | 12 | 2 |
+
+### RV-3 の判定: Case B（A / C が混在）
+
+既存 Prompt の 3 Run は A・C・A と分かれた。Document Class 自体が Run Variance を持つ可能性として記録する。
+
+- 対象資料は A（スライド・視覚表現）と C（導入判断を促す提案）の両方の性質を持ち、6 Run すべてが主・副として A と C の両方を挙げた。違いは主副の順だけ
+- Skill の 3 Run はすべて C を主とした。Prompt の 3 Run では C は 1 回。Skill の指示の形との関係は否定も確認もできない（各 3 回のため）
+- Workflow は変更しない。「主 Class を 1 つに決める必要があるか」という論点は、Post-Freeze 候補には登録せず、Human Review Required とする（下の 12）
+
+### Runtime Variance について新しく分かったこと（観察）
+
+- Finding 数: Prompt の 3 Run は 21〜26、Skill の 3 Run は 28〜31。今回の 6 Run では範囲が重ならなかった。Skill の方が Finding を細かく分ける傾向の可能性があるが、各 3 回であり結論ではない
+- UNKNOWN の使用: Prompt の 3 Run は 0〜1、Skill の 3 Run はすべて 2。TRACEABLE は Prompt で 0、Skill で 0〜1
+- S1 だけにあった「p7 の棒の高さの見え方」（C-24）は、P2・P3 でも検出された（Prompt でも出る指摘であり、Skill 固有ではない）
+- Skill の S3 だけにあった「価格訴求の方向の食い違い」（C-34）は P2 で、S2・S3 にあった「資料全体の物語構成」（C-28）は P3 で検出された
+- Mode B の判定、13 セクション、禁止事項の遵守、Human Decision の空欄は 6 Run すべてで一致した
+- P2・P3 の Finding は 34 cluster への割り当てをしていない（cluster は RV-4 により HOLD のため、増やさない）
+
+---
+
+## 11. Skill Public Status
+
+```text
+Meaning Audit Skill:
+PUBLICLY USABLE — WORKFLOW v1.0 IMPLEMENTATION
+```
+
+- 位置づけ: installable implementation of Meaning Audit Workflow v1.0
+- Workflow version、リポジトリの version は変更しない。Release tag は作成していない
+- README に次の注記を記載した: 「同じ入力でも、Finding の件数、まとめ方、Finding Type、Status などは実行ごとに変わる可能性があります。Meaning Audit Skill は Human Review を前提としています。」
+
+---
+
+## 12. Remaining Unknowns / Human Review Required
+
+| # | 内容 | 状態 |
+|---|---|---|
+| RU-1 | 主 Document Class を 1 つに決める必要があるか（A / C の性質を両方持つ資料で、主副の順が Run ごとに分かれた） | Human Review Required |
+| RU-2 | Skill で Finding 数が多く、UNKNOWN が使われやすい傾向は、Skill の指示の形によるものか（各 3 回のため未確定） | UNKNOWN |
+| RU-3 | 34 cluster の妥当性（RV-4） | HOLD |
+| RU-4 | 他のモデル・他の AI での挙動 | 未確認 |
+| RU-5 | 「意味の監査」など、「Meaning Audit」を含まない依頼での自動選択 | 未確認 |
+| RU-6 | 長い文書・画像を含む資料での、インストール版 Skill（slash command 経由）の挙動 | 未確認（Variance Test は subagent に Skill を読ませる方式） |
+
