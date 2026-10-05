@@ -5,3 +5,6 @@ Thumbs.db
 
 # Private evidence layer (never push)
 private/
+
+# Local Claude Code permission settings (auto-generated, user-specific)
+.claude/settings.json
