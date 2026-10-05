@@ -2,3 +2,6 @@
 *.code-workspace
 .DS_Store
 Thumbs.db
+
+# Private evidence layer (never push)
+private/

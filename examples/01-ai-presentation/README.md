@@ -121,3 +121,62 @@ Test 01 の目的は、「Meaning Audit が正しいことを証明すること�
 - [ ] このファイルの「1」〜「3」が記入されている
 - [ ] `tests/test-log.md` にエントリがある
 - [ ] 失敗パターン・概念候補があった場合、`tests/` に記録されている（無ければ「なし」と test-log に書く）
+
+---
+
+## 記録: Test 01-1: Presentation Artifact — Generation Provenance Unknown（2026-10-06）
+
+Status: AI による実行・比較準備と、Human Review の一部（HR-01, HR-02, FP-005 の暫定判断）まで完了。下の観察結果は暫定です。
+
+HR-01: 監査対象が AI 生成であることは確認できなかったため、Test 01-1 は「AI-Generated Presentation」とは確定せず、Generation Provenance Unknown のプレゼンテーション資料として扱います。
+
+HR-02: 公開版は匿名化しています。実名入りの原本は Private Evidence Layer に保管し、公開していません。
+
+### Test Metadata
+
+| 項目 | 内容 |
+|---|---|
+| Test ID | Test 01-1 |
+| Date | 2026-10-06 |
+| Audit Object | 第三者企業（Company A）のサービス紹介資料（PDF, 36 ページ）。リポジトリには置いていない（[input/README.md](input/README.md)） |
+| Generation Tool | UNKNOWN（Generation Provenance Unknown） |
+| Input Format | ページ画像 PNG（110 dpi × 36）＋ PDF テキスト層 |
+| Audit Mode | AI の判定: Mode B（Artifact-Only） ／ Human 確認: Source が無いため妥当 |
+| Document Class | AI の判定: Class A（主）/ Class C（副） ／ Human 確認: 未 |
+| Source Availability | なし（Run 01A は実行していない） |
+| Audit Purpose | 既定値を使用 |
+| Audit Prompt | `prompts/artifact-only-audit.md`（Run 01B） |
+| Audit Model | Claude Opus 5.5（Claude Code の subagent。この会話の文脈を持たない状態で実行） |
+| Human Reviewer | リポジトリ管理者 |
+
+### Test Objective（暫定）
+
+| 観点 | Finding の有無 | Workflow で扱えたか | メモ |
+|---|---|---|---|
+| Selection | あり（F-14、KS-2） | 扱えた | |
+| Compression | 明示的な Finding は無し | 一部 | Source が無いため、何が落ちたかは判定できない |
+| Framing | あり（F-11, F-20, p9） | 扱えた | |
+| Visualization | あり（F-07, F-12） | 扱えた | 象限図、目盛りの無い棒グラフ |
+| Visual Claim | あり（F-01） | 扱えた | グラフと数値パネルの不一致 |
+| Causal implication | あり（F-15） | 扱えた | |
+| Meaning amplification | あり（F-06, F-08, F-21） | 扱えた | |
+
+### Test Questions（暫定）
+
+| # | 観察結果 | 根拠 |
+|---|---|---|
+| Q1 | 見出しによる強化、グラフと数値の不一致、マクロ統計から事業結論への Warrant の欠落、前提の書かれていないシミュレーション、因果の帰属のずれ、絶対的な表現。ただし AI 生成に特有の Shift かどうかは判別できない（HR-01） | KS-1〜KS-7 |
+| Q2 | 得られた。成果物の中の検算とページをまたいだ照合で 26 件。ただし事例・実績の真偽は扱えない | [review/mode-comparison.md](review/mode-comparison.md) の 4・8 |
+| Q3 | 画像として入力すれば監査できた（p6, p8, p10, p29）。小さな文字は読み取りの確度が下がる | 公開版 Report の 13 |
+| Q4 | 機能した。7 Stage がすべて埋まった。ただし Stage をまたぐ Shift の書き方が定義されていない | FP-004 |
+| Q5 | 成果物の中の検算の位置づけ、CONFLICTING のときの Status、生成過程の来歴 | FP-003, FP-005, PFC-004 |
+| Q6 | 冗長なステップは特定できなかった。Finding が多く、Report の粒度が問題になった | FP-006 |
+| Q7 | 外部統計の引用（p6〜p8）、事例・お客様の声、Visual Claim の解釈、過剰に推定した可能性のある INFERRED | [review/test-01-1-human-review.md](review/test-01-1-human-review.md) |
+
+### ファイル
+
+| ファイル | 内容 |
+|---|---|
+| [audit/test-01-1-public.md](audit/test-01-1-public.md) | 匿名化した Audit Report |
+| [review/test-01-1-human-review.md](review/test-01-1-human-review.md) | Human Review の記録（HR-01, HR-02, FP-005, R-6） |
+| [review/mode-comparison.md](review/mode-comparison.md) | モード比較（Run 01A 未実行のため限定的） |
