@@ -1,0 +1,21 @@
+cff-version: 1.2.0
+message: "If you use this workflow, please cite it as below."
+title: "Meaning Audit Workflow"
+version: "1.0"
+type: software
+# TODO(Human Review): replace with the actual author(s) / organization.
+authors:
+  - name: "Meaning Audit"
+repository-code: "https://github.com/meaning-audit/meaning-audit-workflow"
+abstract: >-
+  An operational workflow for tracing where meaning is added, transformed,
+  inferred, and committed between Evidence/Source and the finally presented
+  Meaning in documents, AI-generated artifacts, proposals, articles, and
+  presentations.
+keywords:
+  - meaning audit
+  - AI-generated content
+  - traceability
+  - human review
+# TODO(Human Review): license is provisional; see LICENSE.
+license: CC-BY-4.0
