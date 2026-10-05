@@ -64,7 +64,9 @@ Pragmatics と Audience / Context は概念上は別のものですが、v1.0 �
 
 ## Install as a Claude Code Skill
 
-Meaning Audit Workflow v1.0 は、Claude Code の Agent Skill としても使えます。Skill の本体は [skills/meaning-audit/](skills/meaning-audit/) です。中身はこのリポジトリの Workflow v1.0 と同じで、新しい手順や概念は加えていません。
+Meaning Audit Workflow v1.0 は、Claude Code の Agent Skill としても使えます。Skill の本体は [skills/meaning-audit/](skills/meaning-audit/) で、位置づけは **installable implementation of Meaning Audit Workflow v1.0** です。方法・Status・Finding Type・STEP は Workflow v1.0 と同じで、新しい手順や概念は加えていません（Skill として動かすための運用上の指示だけを `SKILL.md` に加えています）。
+
+> 同じ入力でも、Finding の件数、まとめ方、Finding Type、Status などは実行ごとに変わる可能性があります。Meaning Audit Skill は Human Review を前提としています。
 
 ### 1. リポジトリを取得する
 
