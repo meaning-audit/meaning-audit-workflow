@@ -1,0 +1,4 @@
+# Local editor / OS files
+*.code-workspace
+.DS_Store
+Thumbs.db
