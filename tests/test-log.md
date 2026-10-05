@@ -8,7 +8,8 @@ Meaning Audit Workflow v1.0 のテスト実行記録です。1 回の監査実�
 
 | Test | 対象 | 想定 Class | 想定 Mode | 状態 |
 |---|---|---|---|---|
-| 01 | AI-Generated Presentation | A | 未定（元資料の有無による） | 未実施 |
+| 01-1 | Presentation Artifact — Generation Provenance Unknown | A | Artifact-Only | FREEZE CANDIDATE — HUMAN REVIEW REQUIRED |
+| 01-2 | Known-Source AI-Generated Presentation | A | Source-Grounded ＋ Artifact-Only（独立実行） | 準備済み・監査対象待ち |
 | 02 | Published Article | B | 未定 | 未実施 |
 | 03 | Proposal / Analysis Document | C | 未定 | 未実施 |
 
@@ -56,7 +57,13 @@ Meaning Audit Workflow v1.0 のテスト実行記録です。1 回の監査実�
 - Public Report: [test-01-1-public.md](../examples/01-ai-presentation/audit/test-01-1-public.md)（匿名化）
 - Human Review: [test-01-1-human-review.md](../examples/01-ai-presentation/review/test-01-1-human-review.md)
 - Comparison: [mode-comparison.md](../examples/01-ai-presentation/review/mode-comparison.md)（Run 01A が無いため限定的）
-- Human Review Status: 一部実施（HR-01, HR-02、FP-005 の暫定判断）。R-3〜R-9 は未判断
+- Human Review Status: 一部実施（HR-01, HR-02、FP-005 の暫定判断）。R-3〜R-9 は整理済みで Human Decision 待ち。公開版と原本の Meaning Preservation は AI による照合済み（UNCERTAIN 2 件）で Human 確認待ち
+- Public 版の一般化: 2026-10-06 に、Finding の成立に不要な原値（金額・割合・件数など）を一般化した。一般化する前の公開版は書き換え前のコミットの履歴に残っている
+
+```text
+Test 01-1 Status:
+FREEZE CANDIDATE — HUMAN REVIEW REQUIRED
+```
 
 #### 観察
 
