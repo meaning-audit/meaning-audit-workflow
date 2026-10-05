@@ -62,6 +62,74 @@ Pragmatics と Audience / Context は概念上は別のものですが、v1.0 �
 - [prompts/source-grounded-audit.md](prompts/source-grounded-audit.md) — Mode A（元資料あり）
 - [prompts/artifact-only-audit.md](prompts/artifact-only-audit.md) — Mode B（成果物のみ）
 
+## Install as a Claude Code Skill
+
+Meaning Audit Workflow v1.0 は、Claude Code の Agent Skill としても使えます。Skill の本体は [skills/meaning-audit/](skills/meaning-audit/) です。中身はこのリポジトリの Workflow v1.0 と同じで、新しい手順や概念は加えていません。
+
+### 1. リポジトリを取得する
+
+```bash
+git clone https://github.com/meaning-audit/meaning-audit-workflow.git
+```
+
+### 2a. 個人用 Skill として入れる（すべてのプロジェクトで使える）
+
+`skills/meaning-audit` を `~/.claude/skills/` にコピーします。
+
+macOS / Linux:
+
+```bash
+mkdir -p ~/.claude/skills
+cp -R meaning-audit-workflow/skills/meaning-audit ~/.claude/skills/
+```
+
+Windows（PowerShell）:
+
+```powershell
+New-Item -ItemType Directory -Force "$HOME\.claude\skills" | Out-Null
+Copy-Item -Recurse -Force .\meaning-audit-workflow\skills\meaning-audit "$HOME\.claude\skills\"
+```
+
+### 2b. Project Skill として入れる（そのプロジェクトだけで使える）
+
+監査したいプロジェクトのルートで、`.claude/skills/` にコピーします。チームで共有する場合は、このディレクトリをプロジェクトのリポジトリにコミットします。
+
+macOS / Linux:
+
+```bash
+mkdir -p .claude/skills
+cp -R /path/to/meaning-audit-workflow/skills/meaning-audit .claude/skills/
+```
+
+Windows（PowerShell）:
+
+```powershell
+New-Item -ItemType Directory -Force ".claude\skills" | Out-Null
+Copy-Item -Recurse -Force C:\path\to\meaning-audit-workflow\skills\meaning-audit ".claude\skills\"
+```
+
+コピー後、`<skills ディレクトリ>/meaning-audit/SKILL.md` があることを確認し、Claude Code を起動し直してください。
+
+### 3. 使い方
+
+Claude Code で、`/meaning-audit` を呼び出すか、Meaning Audit を依頼します。
+
+```text
+/meaning-audit slides.pdf を監査して。元資料は source-report.pdf
+```
+
+```text
+この提案書（proposal.docx の内容を貼り付け）を Meaning Audit して。元資料はありません
+```
+
+```text
+article.md の主張の根拠をたどって、元資料 data.csv からどこで意味が変わったか見て
+```
+
+- 元資料があれば Mode A（Source-Grounded）、無ければ Mode B（Artifact-Only）で監査します。元資料が無くても監査は行い、Source に対する正しさは判定しません
+- 出力は 13 セクションの Meaning Audit Report です。Human Decision 欄は空欄で返ってくるので、[workflow/human-review.md](workflow/human-review.md) に従って人間が判断してください
+- 更新するときは `git pull` してから、もう一度コピーしてください
+
 ## Audit Modes
 
 | Mode | 条件 | 主な判定 |
@@ -129,7 +197,7 @@ workflow/   v1.0 Workflow 仕様、出力フォーマット、Finding 種別、H
 prompts/    AI に直接投入する監査プロンプト
 examples/   テストケース（01 AI 生成プレゼン / 02 公開記事 / 03 提案・分析文書）
 tests/      テストログ、失敗パターン、Post-Freeze 候補
-skills/     将来の Claude Code Skill 化のための置き場（v1.0 では未実装）
+skills/     Claude Code の Agent Skill（meaning-audit）
 ```
 
 ## v1.0 の範囲外
