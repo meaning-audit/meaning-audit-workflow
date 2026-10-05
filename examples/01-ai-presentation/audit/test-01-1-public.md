@@ -5,7 +5,7 @@
 - Prompt: `prompts/artifact-only-audit.md`（無改変）
 - Auditor: Claude Opus 5.5（Claude Code の subagent。テスト実行セッションの文脈を持たない状態で実行）
 - Date: 2026-10-06
-- Review status: FREEZE CANDIDATE — HUMAN REVIEW REQUIRED（[../review/test-01-1-human-review.md](../review/test-01-1-human-review.md)）
+- Review status: FROZEN — FIELD EVIDENCE（Human Review 済み。[../review/test-01-1-human-review.md](../review/test-01-1-human-review.md)）
 
 ## この記録について
 
@@ -33,6 +33,18 @@
 | Public Source 3 | IT 人材の需給についての調査（出典表記あり） |
 
 ---
+
+## Human Review 後の Finding 修正
+
+この公開版は、AI が出力した Report（原本）に、Human Decision による修正を反映したものです。修正したのは下の 4 件だけで、Finding 番号は変えていません。
+
+| Finding | Human Decision | 修正内容 |
+|---|---|---|
+| F-12 | REVISE | 情報状態を CONFLICTING から KNOWN に変更。成果物から確認できるのは、比較の金額・目盛り・費用項目・定義が示されていないこと（不提示）であり、成果物内で相反する記述があるわけではないため |
+| F-14 | REVISE | 母数についての推測を外し、「分数形式の成約実績があるが、母集団の定義・期間・選定条件は確認できない」という範囲に限定した。情報状態を UNKNOWN に変更 |
+| F-20 | REVISE | Observation（因果の根拠の不提示、KNOWN）と Interpretation（Framing の解釈、INFERRED）を分けて記載 |
+| F-22 | REVISE | 見えている範囲からは全体の構成を判断できないため、Status を PARTIALLY TRACEABLE から UNKNOWN に変更 |
+| F-24 | HOLD | 内容は変えず、「3 つの所見を含む」という Human Review 注記を加えた |
 
 ## 1. Audit Object
 
@@ -140,7 +152,7 @@
 | Stage | Trace |
 |---|---|
 | Evidence / Source | 外部 Source なし。成果物内の根拠: p22（開始から短期間での売上（数百万円規模）と高い粗利率、当事者の発言）、p23（月額の継続売上（百万円規模）と分数で示された成約率、発言）、p24（施策の前後のアポ率、発言）。いずれも当事者・業種・時期・測定期間・母数の記載なし。各ページに「成果を保証するものではない」の注記 |
-| Interpretation | p24 の見出しの倍率は、前後のアポ率から計算した値と一致する（KNOWN）。p23 の成約率は「興味を持つ顧客にだけ案内する」という施策の記述と並んでおり、分母の社数が事前に絞られた母数である可能性がある（INFERRED） |
+| Interpretation | p24 の見出しの倍率は、前後のアポ率から計算した値と一致する（KNOWN）。p23 の成約実績は分数形式で示されているが、母集団の定義・対象期間・選定条件は示されていない（UNKNOWN） |
 | Inference / Warrant | p24 の施策は営業スクリプトの変更で、見出しもそう述べるが、数値のラベルは「Service A 導入後のアポ率」として Service A に帰属させている。比較期間・件数・他の要因は示されていない（INFERRED） |
 | Context / Pragmatics | 中扉で事例を「実績」と位置づけ、各ページに「実績達成」のバッジを付ける。p22 の売上が p18-20 のシミュレーションのどの条件に当たるかは示されていない。p36 の設立年月との時期の関係も示されていない |
 | Commitment / Presented Meaning | 「未経験から短期間で高い売上」「一言の提案で継続売上が増加」「劇的改善」と、断定的な成果として提示される |
@@ -154,7 +166,7 @@
 | Evidence / Source | 外部 Source なし。成果物内の根拠: p2 の悩み 5 件、p4 の解決項目 3 件、p12 の提供物リスト、p15 のツール 4 件、p31 の FAQ 回答 |
 | Interpretation | p3「すべて解決」は p2 の 5 つの悩みを受けるが、それぞれの悩みとの対応は p4 の 3 項目でまとめて示されるだけ（KNOWN）。導入コスト・期間・開始までの日数についての具体的な表現（「数百万円」「半年以上」「最短○週間」「最短即日」）の根拠は示されていない（UNKNOWN） |
 | Inference / Warrant | 「開発リスクはゼロ」「すべて提供」「陳腐化のリスクはない」は、提供範囲の列挙から「残るリスクは無い」への推論を含むが、範囲・条件が示されていない（INFERRED） |
-| Context / Pragmatics | p31 の助成金の FAQ は、助成金の利用と「不正受給のリスク」を結びつけ、非対応であることを利点として Framing する |
+| Context / Pragmatics | p31 の助成金の FAQ は、非対応の説明の中で「不正受給のリスク」に触れている（Observation）。これにより非対応という制約が利点として Framing されている（Interpretation、INFERRED） |
 | Commitment / Presented Meaning | 「すべて」「ゼロ」「リスクはない」「利益に直結」と、最大の強さで提示される |
 | Finding | F-08, F-09, F-19, F-20 |
 | Status | UNTRACEABLE |
@@ -186,19 +198,19 @@
 | F-09 | MU-04 コストと期間を省き開発リスクをゼロに、短期間で販売開始 | p4（p2, p15, p32） | Commitment | COMMITMENT_ESCALATION | 導入コスト・期間・開始までの日数についての具体的な表現の根拠が示されていない。教材を開発しないことを「開発リスクはゼロ」と表現し、外部サービスに依存することのリスクには触れていない | UNTRACEABLE | UNKNOWN | p2, p4, p15, p32 |
 | F-10 | MU-18〜MU-20 収益シミュレーション（3 シナリオの利益額） | p18-20 | Inference / Warrant | INFERENCE_GAP | 見出しの合計は表と整合するが、解約ゼロ・累積、集客/営業費・人件費ゼロ、アカウント利用料の単価（逆算）、p19 の年額一括計上といった前提が文章で示されていない。「原価」の範囲がシステム関連費用のみ | PARTIALLY TRACEABLE | KNOWN（表）／INFERRED（前提） | p18-20 |
 | F-11 | MU-18〜MU-20 利益額の強調 | p18-20 | Context / Pragmatics | FRAMING | 「成果を保証しない」は小さな注記で、利益額は大きな赤字で提示される。シミュレーションの単価は p13 の価格設計の例と異なり、どの条件で現実的かは示されていない | PARTIALLY TRACEABLE | KNOWN | p13, p18-20 |
-| F-12 | MU-25 同等の価値を生むコスト比較 | p29 | Context / Pragmatics | VISUAL_CLAIM | 比較対象「自社で構築した場合」に金額・目盛りが無く、棒の高さの根拠が示されていない。Service A 側は月額固定費のみで、p18-20 のアカウント利用料が含まれていない。「同等の価値」の定義も示されていない | PARTIALLY TRACEABLE | CONFLICTING（p18-20 の費用構成との比較） | p29, p18-20 |
+| F-12 | MU-25 同等の価値を生むコスト比較 | p29 | Context / Pragmatics | VISUAL_CLAIM | 比較対象「自社で構築した場合」に金額・目盛りが無く、棒の高さの根拠が示されていない。Service A 側は月額固定費のみで、p18-20 の表にあるアカウント利用料は p29 に示されていない。「同等の価値」の定義も示されていない | PARTIALLY TRACEABLE | KNOWN（金額・目盛り・費用項目・定義の不提示を成果物内で確認） | p29, p18-20 |
 | F-13 | MU-21 未経験から短期間で高い売上と粗利率 | p22 | Evidence → Interpretation | EVIDENCE_INTERPRETATION_BLUR | 当事者、時期、単価・顧客数、粗利率の算定範囲が示されていない。発言中の「初月から黒字」の根拠も無い。p18-20 のシミュレーションとの関係も説明されていない | UNTRACEABLE | UNKNOWN | p21, p22 |
-| F-14 | MU-22 一言の提案で継続売上が増加、分数で示された成約率 | p23 | Inference / Warrant | SELECTION | 成約率の分母（小さな社数）は「興味を持つ顧客にだけ案内する」という施策の記述と並び、事前に絞られた母数である可能性がある。単価・期間・当事者は示されていない | UNTRACEABLE | INFERRED（母数の性質）／UNKNOWN（その他） | p23 施策欄・成果欄 |
+| F-14 | MU-22 一言の提案で継続売上が増加、分数で示された成約実績 | p23 | Inference / Warrant | SELECTION | 分数形式の成約実績が提示されているが、母集団の定義、対象期間、選定条件は資料内で確認できない。単価・当事者も示されていない。数値が虚偽とは判定しない。ただし、その数値をどこまで一般化してよいかは成果物から判断できない | UNTRACEABLE | UNKNOWN（母集団の定義・期間・選定条件） | p23 施策欄・成果欄 |
 | F-15 | MU-23 営業スクリプトの変更でアポ率が数倍、Service A 導入後のアポ率 | p24 | Inference / Warrant | CAUSAL_IMPLICATION | 見出しの倍率は前後のアポ率と整合する。施策は「営業スクリプトの変更」と説明される一方、成果指標は「Service A 導入後のアポ率」として提示されている。施策と成果の帰属関係が資料内では追跡できない。比較期間・コール数・他の要因は示されていない | PARTIALLY TRACEABLE | KNOWN（比率）／INFERRED（帰属） | p24 見出し・施策欄・成果欄 |
 | F-16 | MU-21〜MU-23「実績達成」表示と発言の引用 | p21-24 | Context / Pragmatics | QUOTE_HANDLING | 引用された発言に発言者名・属性・時期が無く、成果物の中では当事者を特定できない。中扉で「実績」と位置づけ、各事例にバッジを付けている | UNTRACEABLE | UNKNOWN | p21-24 |
 | F-17 | MU-24「受講者の声」→「導入企業の声」 | p25-28 | Context / Pragmatics | TITLE_BODY_GAP | 中扉は「受講者の声」だが、各ページは「導入企業の声」で発言者は代表者（Representative A〜C）。導入企業が再販事業者経由の受講企業か、Service A の直接顧客かも示されていない | PARTIALLY TRACEABLE | KNOWN | p25, p26-28 |
 | F-18 | MU-24 導入企業の数値指標（割合・倍率・時間の 6 件） | p26-28 | Evidence → Interpretation | EVIDENCE_INTERPRETATION_BLUR | 作業時間の前後が示された 2 件は、表示された削減率と整合する。残りの 4 件（業務効率、アイデア創出量、残業時間、業務への転用比率）は定義・測定方法・期間が示されていない。p28 の数値ラベルの一つは意味を特定できない | PARTIALLY TRACEABLE | KNOWN（検算）／UNKNOWN（測定方法） | p26-28 |
 | F-19 | MU-26 自動で最新化されるため陳腐化のリスクはない | p31（p4） | Commitment | COMMITMENT_ESCALATION | 更新の頻度・範囲・契約上の条件が示されないまま、リスクが無いと断定される | UNTRACEABLE | UNKNOWN | p4, p31 |
-| F-20 | MU-27 助成金非対応、不正受給のリスクを避け、即決しやすく利益に直結 | p31 | Inference / Warrant | FRAMING | 非対応という制約を、助成金の利用と「不正受給のリスク」を結びつけることで利点として提示している。「即決しやすく利益に直結」の因果の根拠は示されていない | UNTRACEABLE | INFERRED | p31 |
+| F-20 | MU-27 助成金非対応、不正受給のリスクを避け、即決しやすく利益に直結 | p31 | Inference / Warrant | FRAMING | Observation: 「即決しやすく利益に直結」という因果を支える根拠が、成果物内に提示されていない。Interpretation（INFERRED）: 助成金非対応の説明で「不正受給のリスク」に触れることにより、非対応という制約が利点として提示されている、という Framing の解釈 | UNTRACEABLE | KNOWN（Observation: 根拠の不提示）／INFERRED（Interpretation: Framing） | p31 |
 | F-21 | MU-17 最高品質のカリキュラム、監修者の経歴 | p16 | Commitment | AMPLIFICATION | 「最高品質」の比較基準が示されていない。「監修」の具体的な役割、経歴中の数値の根拠も示されていない | UNTRACEABLE | UNKNOWN | p16 |
-| F-22 | MU-28 職種別・業務別に特化した実践的カリキュラムで差別化 | p32（p14, p1） | Inference / Warrant | INFERENCE_GAP | p14 のレッスン名はツール・機能別（画像生成、動画生成、カスタム GPT 等）が中心で、p1 のカテゴリも同様。「職種別・業務別」の構成は成果物の中では確認できない（p14 に業務別の講座が 1 件ある）。「高単価で提案できる」の根拠も無い | PARTIALLY TRACEABLE | INFERRED | p1, p14, p32 |
+| F-22 | MU-28 職種別・業務別に特化した実践的カリキュラムで差別化 | p32（p14, p1） | Inference / Warrant | INFERENCE_GAP | 成果物に見えている範囲（p14 の 1 講座分のレッスン名、p1 の画面のカテゴリ）は、ツール・機能別のものが中心で、業務別の講座が 1 件ある。カリキュラム全体が「職種別・業務別」に構成されているかは、見えている範囲からは判断できない。「高単価で提案できる」の根拠は示されていない | UNKNOWN | KNOWN（見えている範囲の構成、高単価の根拠の不提示）／UNKNOWN（全体の構成） | p1, p14, p32 |
 | F-23 | MU-13 提供本数「○○本以上」「○○種類以上」 | p4, p12, p14（p1, p33） | Evidence → Interpretation | OTHER（数量表記の不一致） | 単位が「本」と「種類」で揺れる。p14 の表（1 講座分の動画本数の合計）と画面キャプチャの件数表示が、表示された提供数とどう関係するか示されていない。p14 の表の時間の列は見出しの単位と表記が合わない | PARTIALLY TRACEABLE | CONFLICTING（単位）／UNKNOWN（総数） | p1, p4, p12, p14, p33 |
-| F-24 | MU-30 Group B の一員になった ／ MU-32 会社概要の設立年月 | p34, p36（p16, p14） | Context / Pragmatics | CONTEXT_LOSS | 「一員」の具体的な関係（資本関係等）、Company A との関係が示されていない。設立年月と、事例・導入企業の声・p16 の実績数との時期の関係が示されていない。p14 の画面キャプチャ内の社名は p36 の社名と表記が異なる | PARTIALLY TRACEABLE | UNKNOWN（関係・時期）／CONFLICTING（社名表記） | p14, p16, p34, p36 |
+| F-24 | MU-30 Group B の一員になった ／ MU-32 会社概要の設立年月 | p34, p36（p16, p14） | Context / Pragmatics | CONTEXT_LOSS | 「一員」の具体的な関係（資本関係等）、Company A との関係が示されていない。設立年月と、事例・導入企業の声・p16 の実績数との時期の関係が示されていない。p14 の画面キャプチャ内の社名は p36 の社名と表記が異なる （Human Review 注記: この Finding には 3 つの所見が含まれている。Test 01-1 で実際に生成された粒度の Evidence として、分割せずに保持する） | PARTIALLY TRACEABLE | UNKNOWN（関係・時期）／CONFLICTING（社名表記） | p14, p16, p34, p36 |
 | F-25 | MU-31 AI 教育はあらゆる業界で必要とされ、確実に伸びる市場 | p35 | Commitment | COMMITMENT_ESCALATION | 成果物内の市場データは生成AI市場全体（p6）で、AI 教育市場のデータは示されていない。「あらゆる業界」「確実に」は根拠の範囲を超える強さ | UNTRACEABLE | INFERRED | p6, p35 |
 | F-26 | MU-29 営業資料や契約書の雛形で、短期間で開始 | p32（p15） | Evidence → Interpretation | OTHER（成果物内の記述の不一致） | p32 は「契約書の雛形」、p15 は「申込書の雛形」と書いており、提供物の種類が一致しない。p15 の「リーガルチェックの工数削減」の範囲も示されていない | PARTIALLY TRACEABLE | CONFLICTING | p15, p32 |
 

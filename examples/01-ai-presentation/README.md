@@ -126,7 +126,7 @@ Test 01 の目的は、「Meaning Audit が正しいことを証明すること�
 
 ## 記録: Test 01-1: Presentation Artifact — Generation Provenance Unknown（2026-10-06）
 
-Status: **FREEZE CANDIDATE — HUMAN REVIEW REQUIRED**（Freeze の条件と残りの Human Decision は [review/test-01-1-human-review.md](review/test-01-1-human-review.md) の 8）。下の観察結果は暫定です。
+Status: **FROZEN — FIELD EVIDENCE**（2026-10-06）。このテストで起きたことと Human Review の結果を Field Evidence として固定したもので、Workflow の正しさを認定するものではありません。Human Decision は [review/test-01-1-final-decision-packet.md](review/test-01-1-final-decision-packet.md)。下の Test Objective と Test Questions は Freeze 時点の観察です。
 
 HR-01: 監査対象が AI 生成であることは確認できなかったため、Test 01-1 は「AI-Generated Presentation」とは確定せず、Generation Provenance Unknown のプレゼンテーション資料として扱います。
 
@@ -149,7 +149,7 @@ HR-02: 公開版は匿名化しています。実名入りの原本は Private E
 | Audit Model | Claude Opus 5.5（Claude Code の subagent。この会話の文脈を持たない状態で実行） |
 | Human Reviewer | リポジトリ管理者 |
 
-### Test Objective（暫定）
+### Test Objective（Freeze 時点）
 
 | 観点 | Finding の有無 | Workflow で扱えたか | メモ |
 |---|---|---|---|
@@ -161,7 +161,7 @@ HR-02: 公開版は匿名化しています。実名入りの原本は Private E
 | Causal implication | あり（F-15） | 扱えた | |
 | Meaning amplification | あり（F-06, F-08, F-21） | 扱えた | |
 
-### Test Questions（暫定）
+### Test Questions（Freeze 時点）
 
 | # | 観察結果 | 根拠 |
 |---|---|---|

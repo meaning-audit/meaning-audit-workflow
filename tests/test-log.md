@@ -8,7 +8,7 @@ Meaning Audit Workflow v1.0 のテスト実行記録です。1 回の監査実�
 
 | Test | 対象 | 想定 Class | 想定 Mode | 状態 |
 |---|---|---|---|---|
-| 01-1 | Presentation Artifact — Generation Provenance Unknown | A | Artifact-Only | FREEZE CANDIDATE — HUMAN REVIEW REQUIRED |
+| 01-1 | Presentation Artifact — Generation Provenance Unknown | A | Artifact-Only | FROZEN — FIELD EVIDENCE |
 | 01-2 | Known-Source AI-Generated Presentation | A | Source-Grounded ＋ Artifact-Only（独立実行） | 準備済み・監査対象待ち |
 | 02 | Published Article | B | 未定 | 未実施 |
 | 03 | Proposal / Analysis Document | C | 未定 | 未実施 |
@@ -113,3 +113,18 @@ FREEZE CANDIDATE — HUMAN REVIEW REQUIRED
 - Prompt Run P2・P3: 主 Class は P2 が C、P3 が A。既存 Prompt の 3 Run は A・C・A、Skill の 3 Run は C・C・C。RV-3 は Case B（A / C が混在）
 - Skill Public Status: PUBLICLY USABLE — WORKFLOW v1.0 IMPLEMENTATION（installable implementation of Meaning Audit Workflow v1.0。Release tag は未作成）
 - 記録: [skill-runtime-validation.md](../examples/01-ai-presentation/review/skill-runtime-validation.md) の 9〜12
+
+### 2026-10-06 Test 01-1 Freeze
+
+- Human Decision（R-3〜R-9）: F-01 ACCEPT、F-04 ACCEPT、F-07 ACCEPT、F-12 REVISE、F-14 REVISE、F-20 REVISE、F-22 REVISE、F-24 HOLD、F-03 NO ACTION、F-18 HOLD、Run 01A NO ACTION、Finding Granularity HOLD
+- 公開版 Report に反映した修正: F-12（情報状態 CONFLICTING → KNOWN）、F-14（母数の推測を外し、情報状態 UNKNOWN）、F-20（Observation と Interpretation を分離）、F-22（Status → UNKNOWN）。F-24 は Human Review 注記のみ。Finding 番号は変更していない
+- 公開履歴: 書き換え前のコミットを指す SHA の文字列を、公開リポジトリの履歴から除いた（git filter-repo と force-with-lease push）。Public repository history から旧コミットへの公開上の発見経路を除去した。GitHub 内部に参照されないオブジェクトが残っている可能性はあり、GitHub Support への削除依頼はしていない
+- 維持したもの: FP-001〜FP-006、PFC-003、PFC-004、Skill Runtime Variance Observation、Generation Provenance UNKNOWN、Run 01A 未実行
+
+```text
+Test 01-1 Status:
+FROZEN — FIELD EVIDENCE
+```
+
+FROZEN — FIELD EVIDENCE は、このテストで起きたこと、AI の Audit Report、Human Review、Finding の修正、失敗の観察、Unknown を Field Evidence として固定したことを意味する。Workflow v1.0 が validated されたこと、Finding が普遍的に正しいこと、AI Audit の再現性が保証されたこと、Method が final であることは意味しない。
+

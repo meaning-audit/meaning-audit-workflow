@@ -1,30 +1,30 @@
 # Test 01-1 Final Human Decision Packet
 
 - Test: Test 01-1: Presentation Artifact — Generation Provenance Unknown
-- Status: **FREEZE CANDIDATE — HUMAN REVIEW REQUIRED**
+- Status: **FROZEN — FIELD EVIDENCE**（2026-10-06、下の 12 件の Human Decision を記入済み）
 - Date: 2026-10-06
 - 対象: R-3〜R-9（12 件の判断）
 - 作成: Claude Opus 5.5。Evidence は既存の記録（公開版 Report、Human Review 記録、主セッションによるページ画像の直接確認）からの抜粋のみ。AI Recommendation は既存のものを維持しており、この Packet のために新しい推論は加えていない
 - 判断済み（この Packet の対象外）: F-05 → REVISE（反映済み）、F-23 → REVISE（反映済み）、GitHub Support への削除依頼 → NO ACTION FOR NOW（Private の記録）
 
-この Packet の判断がすべて記入されたら、Test 01-1 を `FROZEN — FIELD EVIDENCE` に変更できます。Freeze は「このテストで起きたことを記録として固定する」という意味で、Workflow の正しさを認定するものではありません。
+12 件の Human Decision がすべて記入されたため、Test 01-1 を `FROZEN — FIELD EVIDENCE` に変更しました。Freeze は「このテストで起きたことを記録として固定する」という意味で、Workflow の正しさを認定するものではありません。
 
 選べる Human Decision: `ACCEPT` / `REVISE` / `HOLD` / `INVESTIGATE` / `NO ACTION`
 
 | # | 対象 | AI Recommendation | Human Decision |
 |---|---|---|---|
-| 1 | R-3 / F-01 | ACCEPT | |
-| 2 | R-4 / F-04 | ACCEPT | |
-| 3 | R-5 / F-07 | ACCEPT | |
-| 4 | R-5 / F-12 | REVISE | |
-| 5 | R-6 / F-14 | HOLD | |
-| 6 | R-6 / F-20 | REVISE | |
-| 7 | R-6 / F-22 | REVISE | |
-| 8 | R-6 / F-24 | HOLD | |
-| 9 | R-7 / F-03 | INVESTIGATE | |
-| 10 | R-7 / F-18 | HOLD | |
-| 11 | R-8 / Run 01A | NO ACTION | |
-| 12 | R-9 / Finding Granularity | HOLD | |
+| 1 | R-3 / F-01 | ACCEPT | **ACCEPT** |
+| 2 | R-4 / F-04 | ACCEPT | **ACCEPT** |
+| 3 | R-5 / F-07 | ACCEPT | **ACCEPT** |
+| 4 | R-5 / F-12 | REVISE | **REVISE** |
+| 5 | R-6 / F-14 | HOLD | **REVISE** |
+| 6 | R-6 / F-20 | REVISE | **REVISE** |
+| 7 | R-6 / F-22 | REVISE | **REVISE** |
+| 8 | R-6 / F-24 | HOLD | **HOLD** |
+| 9 | R-7 / F-03 | INVESTIGATE | **NO ACTION** |
+| 10 | R-7 / F-18 | HOLD | **HOLD** |
+| 11 | R-8 / Run 01A | NO ACTION | **NO ACTION** |
+| 12 | R-9 / Finding Granularity | HOLD | **HOLD** |
 
 ---
 
@@ -49,6 +49,7 @@ PARTIALLY TRACEABLE / CONFLICTING
 ACCEPT
 
 **Human Decision**
+ACCEPT（2026-10-06）
 
 
 ### 2. R-4 / F-04
@@ -72,6 +73,7 @@ Title-body のずれとしての判定を、このまま固定してよいか。
 ACCEPT
 
 **Human Decision**
+ACCEPT（2026-10-06）
 
 
 ### 3. R-5 / F-07
@@ -95,6 +97,7 @@ Visual Claim としての判定を、このまま固定してよいか。
 ACCEPT
 
 **Human Decision**
+ACCEPT（2026-10-06）
 
 
 ### 4. R-5 / F-12
@@ -118,6 +121,7 @@ PARTIALLY TRACEABLE / CONFLICTING（p18-20 の費用構成との比較）
 REVISE（Finding の内容は維持し、情報状態を見直す）
 
 **Human Decision**
+REVISE（2026-10-06）
 
 
 ### 5. R-6 / F-14
@@ -141,6 +145,7 @@ UNTRACEABLE / INFERRED（母数の性質）・UNKNOWN（その他）
 HOLD
 
 **Human Decision**
+REVISE（2026-10-06）
 
 
 ### 6. R-6 / F-20
@@ -164,6 +169,7 @@ UNTRACEABLE / INFERRED
 REVISE
 
 **Human Decision**
+REVISE（2026-10-06）
 
 
 ### 7. R-6 / F-22
@@ -187,6 +193,7 @@ Status を `UNKNOWN` とすべきか。成果物に見えている範囲だけ�
 REVISE（Status を UNKNOWN とするか確認する）
 
 **Human Decision**
+REVISE（2026-10-06）
 
 
 ### 8. R-6 / F-24
@@ -210,6 +217,7 @@ PARTIALLY TRACEABLE / UNKNOWN（関係・時期）・CONFLICTING（社名表記�
 HOLD
 
 **Human Decision**
+HOLD（2026-10-06）
 
 
 ### 9. R-7 / F-03
@@ -233,6 +241,7 @@ PARTIALLY TRACEABLE / UNKNOWN
 INVESTIGATE
 
 **Human Decision**
+NO ACTION（2026-10-06）
 
 
 ### 10. R-7 / F-18
@@ -256,6 +265,7 @@ PARTIALLY TRACEABLE / KNOWN（検算）・UNKNOWN（測定方法）
 HOLD
 
 **Human Decision**
+HOLD（2026-10-06）
 
 
 ### 11. R-8 / Run 01A
@@ -279,6 +289,7 @@ Test 01-1 を Mode B（Artifact-Only）単独の記録として固定するか�
 NO ACTION
 
 **Human Decision**
+NO ACTION（2026-10-06）
 
 
 ### 12. R-9 / Finding Granularity
@@ -302,4 +313,5 @@ FP-006 として保持（採用・却下はしていない）
 HOLD
 
 **Human Decision**
+HOLD（2026-10-06）
 

@@ -5,7 +5,7 @@
 - Date: 2026-10-06
 - Reviewer: Human Reviewer（リポジトリ管理者）
 - 記録作成: Claude Opus 5.5（Human の判断を記録し、判断材料を整理したもの。AI は判断を確定していない）
-- **Test 01-1 Status: FREEZE CANDIDATE — HUMAN REVIEW REQUIRED**
+- **Test 01-1 Status: FROZEN — FIELD EVIDENCE**（2026-10-06）
 
 このテストは、AI 生成プレゼンであることが確認できたテストではありません。生成来歴が不明なプレゼンテーション資料に対して、Artifact-Only の Meaning Audit がどこまで機能するかを観察したフィールドテストです。
 
@@ -40,7 +40,7 @@
 |---|---|---|---|
 | R-1 | Test 01 の前提（AI 生成か） | HR-01 で判断済み | Provenance Unknown として扱う |
 | R-2 | 公開の可否 | HR-02 で判断済み | 実名入りは非公開。匿名化版のみ公開 |
-| R-3〜R-9 | 下の 7 で整理済み | Human Decision 待ち | |
+| R-3〜R-9 | 下の 7・9 と Final Decision Packet | Human Decision 記入済み（2026-10-06） | [test-01-1-final-decision-packet.md](test-01-1-final-decision-packet.md) |
 | FP-005 | 下の 3 | 暫定判断済み | 下の 3 のとおり |
 | Meaning Preservation | 下の 6 | F-05・F-23 の REVISE を反映し、照合をやり直した（YES 26） | F-05: REVISE ／ F-23: REVISE |
 
@@ -187,6 +187,8 @@ Private Evidence Layer は、このリポジトリとは別の非公開の Evide
 
 結果: YES 26 件、UNCERTAIN 0 件、NO 0 件（2026-10-06、F-05・F-23 の修正後に更新。修正前は YES 24 件、UNCERTAIN 2 件）。
 
+**再照合（2026-10-06、R-3〜R-9 の Human Decision 反映後）**: 照合の基準を「Private 原本 ＋ Human Decision」とした。F-12・F-14・F-20・F-22 は Human Decision どおりに原本から意図して変更したもので、その変更内容が Decision と一致することを確認した。F-24 は内容を変えず注記のみ。その他の 21 件は前回の照合から変更なし。結果: YES 26 件、UNCERTAIN 0 件、NO 0 件。
+
 ---
 
 ## 7. R-3〜R-9 の整理
@@ -213,18 +215,18 @@ AI Recommendation は判断材料の整理であり、Human Decision ではあ�
 | Public / Private の境界が明確 | 達成 | 上の 5 |
 | Public 版の再特定リスクを低減済み | 達成（注記あり） | 原値を一般化し、2026-10-06 に git の履歴も書き換えた（main の全履歴で原値 0 件）。書き換え前のコミットの扱いについての Human Decision は Private の記録にある |
 | Public 版と Private 版の Meaning Preservation を確認済み | 達成 | 上の 6（YES 26、F-05・F-23 は Human Decision REVISE を反映） |
-| R-3〜R-9 を整理済み | 達成（Human Decision 待ち） | 上の 7 |
+| R-3〜R-9 を整理済み | 達成（Human Decision 記入済み） | 上の 7・9、Final Decision Packet |
 | FP-001〜006 を記録済み | 達成 | [../../../tests/failure-patterns.md](../../../tests/failure-patterns.md) |
 | PFC-003・004 を記録済み | 達成 | [../../../tests/post-freeze-candidates.md](../../../tests/post-freeze-candidates.md) |
 | 公開リポジトリに Private Evidence が無い | 達成 | push 前の安全確認と、GitHub 側のファイル一覧の確認 |
 | Workflow / Prompt 本体を変更していない | 達成 | 該当 6 ファイルの最終更新は初期構築のコミット |
 
 ```text
-Test 01-1 Status:
+Test 01-1 Status（Freeze 前）:
 FREEZE CANDIDATE — HUMAN REVIEW REQUIRED
 ```
 
-APPROVED / FINAL にはしていません。Freeze の確定には、少なくとも次の Human Decision が必要です。
+2026-10-06、下の Human Decision がすべてそろったため、Freeze しました（下の 10）。
 
 - ~~6 の UNCERTAIN 2 件（F-05, F-23）~~ → Human Decision REVISE を反映済み
 - 7 の R-3〜R-9
@@ -294,7 +296,7 @@ APPROVED / FINAL にはしていません。Freeze の確定には、少なく�
 **Existing Evidence**: p6 を直接確認した。ドル建ての倍率は約 20 倍、円建ての倍率は約 15 倍。Ledger はこの区別を保っている。Skill 互換性確認の実行でも同じ読み方だった（S-06）。
 **AI Recommendation**: ACCEPT
 **Possible Human Decisions**: ACCEPT / REVISE / HOLD / INVESTIGATE / NO ACTION
-**Human Decision**:
+**Human Decision**: ACCEPT（2026-10-06）
 
 ### R-4（F-04）
 
@@ -302,7 +304,7 @@ APPROVED / FINAL にはしていません。Freeze の確定には、少なく�
 **Existing Evidence**: p8 を直接確認した。見出しの年数・語はグラフに無く、2 時点の比較である。Skill 互換性確認の実行でも同じ Finding（S-09）。
 **AI Recommendation**: ACCEPT
 **Possible Human Decisions**: ACCEPT / REVISE / HOLD / INVESTIGATE / NO ACTION
-**Human Decision**:
+**Human Decision**: ACCEPT（2026-10-06）
 
 ### R-5（F-07, F-12）
 
@@ -310,7 +312,7 @@ APPROVED / FINAL にはしていません。Freeze の確定には、少なく�
 **Existing Evidence**: F-07: p10 に配置の根拠データが無い。F-12: p29 を直接確認し、比較対象に金額・目盛りが無いことを確認した。F-12 の CONFLICTING は、食い違いというより費用範囲の不提示とも読める。Skill 互換性確認の実行は、F-12 に当たる内容を 2 件に分けた（S-22: UNKNOWN、S-23: KNOWN）。
 **AI Recommendation**: F-07 → ACCEPT ／ F-12 → REVISE
 **Possible Human Decisions**: ACCEPT / REVISE / HOLD / INVESTIGATE / NO ACTION
-**Human Decision**: F-07:　　F-12:
+**Human Decision**: F-07: ACCEPT ／ F-12: REVISE（2026-10-06、公開版に反映済み）
 
 ### R-6（F-14, F-20, F-22, F-24）
 
@@ -318,7 +320,7 @@ APPROVED / FINAL にはしていません。Freeze の確定には、少なく�
 **Existing Evidence**: 4 の整理（Artifact から確認できること、Inference が始まる地点、Finding Type と Status の妥当性、複数の所見）。Skill 互換性確認の実行では、F-14 に当たる Finding は母数の推測をしていない（S-18）。F-24 に当たる内容は 2 件に分かれた（S-28, S-30）。
 **AI Recommendation**: F-14 → HOLD ／ F-20 → REVISE ／ F-22 → REVISE ／ F-24 → HOLD
 **Possible Human Decisions**: ACCEPT / REVISE / HOLD / INVESTIGATE / NO ACTION
-**Human Decision**: F-14:　　F-20:　　F-22:　　F-24:
+**Human Decision**: F-14: REVISE ／ F-20: REVISE ／ F-22: REVISE（いずれも公開版に反映済み） ／ F-24: HOLD（3 つの所見を含むという注記を維持し、分割しない）（2026-10-06）
 
 ### R-7（F-03, F-18）
 
@@ -326,7 +328,7 @@ APPROVED / FINAL にはしていません。Freeze の確定には、少なく�
 **Existing Evidence**: F-03: 出典表記がどの図に係るかは、Public Source 3 を見れば確かめられる可能性がある。F-18: 導入企業の数値の定義は Client A〜C の測定記録が必要で、入手の見込みが低い。
 **AI Recommendation**: F-03 → INVESTIGATE ／ F-18 → HOLD
 **Possible Human Decisions**: ACCEPT / REVISE / HOLD / INVESTIGATE / NO ACTION
-**Human Decision**: F-03:　　F-18:
+**Human Decision**: F-03: NO ACTION（Test 01-1 は Artifact-Only Audit として閉じ、Evidence Boundary を後から広げない） ／ F-18: HOLD（UNKNOWN / Source Verification Required のまま保持）（2026-10-06）
 
 ### R-8（Run 01A）
 
@@ -334,7 +336,7 @@ APPROVED / FINAL にはしていません。Freeze の確定には、少なく�
 **Existing Evidence**: 資料全体の Source は無い。公開統計（Public Source 1〜3）だけで p6〜p8 に限った Mode A は可能。Mode A と B の比較は Test 01-2 で設計済み。
 **AI Recommendation**: NO ACTION
 **Possible Human Decisions**: ACCEPT / REVISE / HOLD / INVESTIGATE / NO ACTION
-**Human Decision**:
+**Human Decision**: NO ACTION（2026-10-06。Mode 比較は Test 01-2 で行う）
 
 ### R-9（Report の粒度）
 
@@ -342,4 +344,45 @@ APPROVED / FINAL にはしていません。Freeze の確定には、少なく�
 **Existing Evidence**: FP-006 に記録済み。R-6 の 4 件はすべて複数の所見を含む。Skill 互換性確認の実行では Finding 30 件で、まとめ方・分け方に差が出た。
 **AI Recommendation**: HOLD
 **Possible Human Decisions**: ACCEPT / REVISE / HOLD / INVESTIGATE / NO ACTION
-**Human Decision**:
+**Human Decision**: HOLD（2026-10-06。粒度のばらつきは Field Evidence として保持し、Test 01-1 だけを根拠に Workflow・Prompt を変えない）
+
+---
+
+## 10. Freeze
+
+```text
+Test 01-1 Status:
+FROZEN — FIELD EVIDENCE
+```
+
+- Date: 2026-10-06
+- 根拠: R-3〜R-9 の Human Decision（[test-01-1-final-decision-packet.md](test-01-1-final-decision-packet.md)）、F-05・F-23 の Human Decision、Meaning Preservation の再照合（YES 26）、公開リポジトリの安全確認
+
+### FROZEN — FIELD EVIDENCE の意味
+
+次のものを Field Evidence として固定したことを意味します。
+
+- このテストで起きたこと
+- AI の Audit Report
+- Human Review
+- Finding の修正（F-05、F-12、F-14、F-20、F-22、F-23）
+- 失敗の観察（FP-001〜FP-006）
+- Unknown（Generation Provenance UNKNOWN、Run 01A 未実行、Critical Unknowns）
+
+次のことは意味しません。
+
+- Workflow v1.0 が validated された
+- Finding が普遍的に正しい
+- AI Audit の再現性が保証された
+- Method が final である
+
+### 公開履歴についての Human Decision の更新
+
+- 書き換え前のコミットを指す SHA の文字列が、公開リポジトリの過去の版の記述に残っており、そこから書き換え前のコミットへ直接到達できることが確認された。前回の判断の前提の一部が変わったため、Human Decision を **REMOVE PUBLIC DISCOVERY PATH** に更新した
+- 2026-10-06、git filter-repo で該当する文字列を公開履歴から除き、force-with-lease で push した。Public repository history から旧コミットへの公開上の発見経路を除去した
+- GitHub 内部に、参照されないオブジェクトが物理的に残っている可能性はある。GitHub Support への削除依頼はしていない。完全に削除されたとは記録しない
+
+### Freeze 時点で維持したもの
+
+FP-001〜FP-006、PFC-003、PFC-004、Skill Runtime Variance Observation、Generation Provenance UNKNOWN、Run 01A 未実行。Workflow v1.0、Prompt、Meaning Audit Skill、Finding Type 体系は変更していない。
+
