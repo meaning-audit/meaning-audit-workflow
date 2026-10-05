@@ -95,3 +95,14 @@ FREEZE CANDIDATE — HUMAN REVIEW REQUIRED
 - 記録: [skill-runtime-validation.md](../examples/01-ai-presentation/review/skill-runtime-validation.md)。各 Run の Report 原本は Private Evidence Vault
 - Skill の調整: していない（観察のみ）
 - Human Review Status: RV-1〜RV-5 未実施
+
+### 2026-10-06 Test 01-1 Final Human Decision Preparation
+
+- Human Decision: F-05 → REVISE、F-23 → REVISE（どちらも公開版に反映済み）。Meaning Preservation は YES 26 / UNCERTAIN 0 / NO 0
+- R-3〜R-9 は [test-01-1-final-decision-packet.md](../examples/01-ai-presentation/review/test-01-1-final-decision-packet.md) にまとめた（12 件、Human Decision 待ち）
+- 書き換え前の履歴の扱いについての Human Decision は Private Evidence Vault に記録した
+
+```text
+Test 01-1 Status:
+FREEZE CANDIDATE — HUMAN REVIEW REQUIRED
+```

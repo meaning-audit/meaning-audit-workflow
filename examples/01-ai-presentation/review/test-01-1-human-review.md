@@ -42,7 +42,7 @@
 | R-2 | 公開の可否 | HR-02 で判断済み | 実名入りは非公開。匿名化版のみ公開 |
 | R-3〜R-9 | 下の 7 で整理済み | Human Decision 待ち | |
 | FP-005 | 下の 3 | 暫定判断済み | 下の 3 のとおり |
-| Meaning Preservation | 下の 6 | AI による照合済み。Human 確認待ち | |
+| Meaning Preservation | 下の 6 | F-05・F-23 の REVISE を反映し、照合をやり直した（YES 26） | F-05: REVISE ／ F-23: REVISE |
 
 ---
 
@@ -162,7 +162,7 @@ Private Evidence Layer は、このリポジトリとは別の非公開の Evide
 | F-02 | YES | なし | NO |
 | F-03 | YES | シナリオ名と不足数の原値を削除。「異なるシナリオ名が並ぶ」「見出しの年と不足数の年が異なる」は維持 | NO |
 | F-04 | YES | 割合の原値と見出しの年数を削除。「増加幅は確信の方が大きい」「見出しの年数・語はグラフに無い」は維持 | NO |
-| F-05 | UNCERTAIN | 原本は画像の内容を具体的に記述していた。公開版は「損失を連想させる写真」と言い換えたため、Visual Claim の解釈が一段加わっている | YES |
+| F-05 | YES | 2026-10-06 に REVISE を反映。公開版は画像の観察（Visual observation: こぼれた硬貨と排水口が写っている）と解釈（損失回避の Framing）を分けて書く形に戻した。企業を特定する情報は含まない | NO |
 | F-06 | YES | なし | NO |
 | F-07 | YES | なし | NO |
 | F-08 | YES | なし | NO |
@@ -180,12 +180,12 @@ Private Evidence Layer は、このリポジトリとは別の非公開の Evide
 | F-20 | YES | なし | NO |
 | F-21 | YES | 経歴中の数値の原値を削除 | NO |
 | F-22 | YES | 具体的なツール名を、ツールの種類（画像生成、動画生成など）に一般化 | NO |
-| F-23 | UNCERTAIN | Ledger の内容は一致。ただし公開版 KS-7 の Meaning Trace では「1 講座分の合計は、表示された提供本数より少ない」と書いており、原本の「どう関係するか示されていない」より不一致を強く読ませる可能性がある | YES |
+| F-23 | YES | 2026-10-06 に REVISE を反映。公開版 KS-7 から、原本に無かった「提供本数より少ない」という比較を除き、原本と同じく「1 講座分の動画本数の合計を検算で求めた」だけを書く形に戻した（原値は Private） | NO |
 | F-24 | YES | 所在地の原文を削除。「Group B と Company A の所在地が同じ表記」という観察は KS-7 の Meaning Trace に維持 | NO |
 | F-25 | YES | なし | NO |
 | F-26 | YES | なし | NO |
 
-結果: YES 24 件、UNCERTAIN 2 件（F-05, F-23）、NO 0 件。UNCERTAIN の 2 件は修正を確定せず、Human Review に回します。
+結果: YES 26 件、UNCERTAIN 0 件、NO 0 件（2026-10-06、F-05・F-23 の修正後に更新。修正前は YES 24 件、UNCERTAIN 2 件）。
 
 ---
 
@@ -211,8 +211,8 @@ AI Recommendation は判断材料の整理であり、Human Decision ではあ�
 |---|---|---|
 | Private Evidence を非公開の Evidence Vault へ移行済み | 達成 | Vault の `test-01-1/` に、元の資料と原本の記録 9 ファイル。manifest に SHA-256 を記録し、移動の前後でハッシュ値が一致 |
 | Public / Private の境界が明確 | 達成 | 上の 5 |
-| Public 版の再特定リスクを低減済み | 達成（注記あり） | 原値を一般化し、2026-10-06 に git の履歴も書き換えた（main の全履歴で原値 0 件）。ただし GitHub は、書き換え前のコミットを SHA を直接指定すれば引き続き表示する。完全な削除には GitHub Support への依頼が必要 |
-| Public 版と Private 版の Meaning Preservation を確認済み | AI による照合済み・Human 確認待ち | 上の 6（UNCERTAIN 2 件） |
+| Public 版の再特定リスクを低減済み | 達成（注記あり） | 原値を一般化し、2026-10-06 に git の履歴も書き換えた（main の全履歴で原値 0 件）。書き換え前のコミットの扱いについての Human Decision は Private の記録にある |
+| Public 版と Private 版の Meaning Preservation を確認済み | 達成 | 上の 6（YES 26、F-05・F-23 は Human Decision REVISE を反映） |
 | R-3〜R-9 を整理済み | 達成（Human Decision 待ち） | 上の 7 |
 | FP-001〜006 を記録済み | 達成 | [../../../tests/failure-patterns.md](../../../tests/failure-patterns.md) |
 | PFC-003・004 を記録済み | 達成 | [../../../tests/post-freeze-candidates.md](../../../tests/post-freeze-candidates.md) |
@@ -226,11 +226,11 @@ FREEZE CANDIDATE — HUMAN REVIEW REQUIRED
 
 APPROVED / FINAL にはしていません。Freeze の確定には、少なくとも次の Human Decision が必要です。
 
-- 6 の UNCERTAIN 2 件（F-05, F-23）
+- ~~6 の UNCERTAIN 2 件（F-05, F-23）~~ → Human Decision REVISE を反映済み
 - 7 の R-3〜R-9
-- GitHub に残る書き換え前のコミットの扱い（GitHub Support への削除依頼をするか）
+- ~~書き換え前のコミットの扱い~~ → Human Decision 済み（Private の記録）
 
-未決事項の詳細は下の 9 にまとめています。
+未決事項の詳細は下の 9 にまとめています。R-3〜R-9 は [test-01-1-final-decision-packet.md](test-01-1-final-decision-packet.md) で判断できるようにまとめています。
 
 ---
 
@@ -263,7 +263,7 @@ APPROVED / FINAL にはしていません。Freeze の確定には、少なく�
 
 **Possible Human Decisions**: ACCEPT / REVISE / HOLD / INVESTIGATE / NO ACTION
 
-**Human Decision**:
+**Human Decision**: REVISE（2026-10-06。公開版に反映済み）
 
 ### F-23
 
@@ -286,7 +286,7 @@ APPROVED / FINAL にはしていません。Freeze の確定には、少なく�
 
 **Possible Human Decisions**: ACCEPT / REVISE / HOLD / INVESTIGATE / NO ACTION
 
-**Human Decision**:
+**Human Decision**: REVISE（2026-10-06。公開版に反映済み）
 
 ### R-3（F-01）
 

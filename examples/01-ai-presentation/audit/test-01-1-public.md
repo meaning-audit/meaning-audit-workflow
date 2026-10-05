@@ -118,7 +118,7 @@
 | Evidence / Source | 外部 Source なし。成果物内の根拠: p6（生成AI市場）、p7（労働人口予測、IT 人材・AI 人材の不足数、Public Source 3 の表記）、p8（Public Source 2） |
 | Interpretation | p5 は 3 つの要素を「×」で結び「最も重要な理想的条件が整っている」とまとめる。p10 は「市場の成長性」×「人材供給」の 2 軸に円を置き、右上を「最も理想的なビジネス環境」とする（KNOWN） |
 | Inference / Warrant | 人材不足 → AI 研修の需要、生成AI市場の拡大 → AI 研修事業の成長、不安 → 研修需要、AI 研修事業が p10 の右上に位置する、のいずれも Warrant が示されていない（INFERRED）。p10 の円の位置がデータに基づくことも示されていない（UNKNOWN） |
-| Context / Pragmatics | p9 は損失を連想させる写真と「今乗らないと手遅れ」という文で損失回避の Framing をつくる。p35 の代表者メッセージは「確実に伸びていく市場」と結ぶ |
+| Context / Pragmatics | p9 は、写真（Visual observation: こぼれた硬貨と排水口が写っている）と「今乗らないと手遅れ」という文を組み合わせ、損失回避の Framing をつくる（Interpretation）。p35 の代表者メッセージは「確実に伸びていく市場」と結ぶ |
 | Commitment / Presented Meaning | 「最も重要」「最も理想的」「手遅れ」「確実に」と、根拠の範囲を超える強さで結論づけられる |
 | Finding | F-03, F-05, F-06, F-07 |
 | Status | UNTRACEABLE（各統計には出典表記があるが、結論への推論の道筋が示されていない） |
@@ -164,7 +164,7 @@
 | Stage | Trace |
 |---|---|
 | Evidence / Source | 外部 Source なし。成果物内の根拠: p4・p12 の提供本数（「○○本以上」）、p14 の提供数（「○○種類以上」）、p1・p33 の画面キャプチャの件数表示、p14 の画面キャプチャ内の社名表記、p36 の会社概要（設立年月など）、p34 の Group B の記述、p16 の監修者の経歴 |
-| Interpretation | 「本」と「種類」で単位が揺れる。p14 の表にある 1 講座分の動画本数の合計は、表示された提供本数より少ない（KNOWN: 検算）。画面キャプチャの件数表示が何の件数かは示されていない（UNKNOWN） |
+| Interpretation | 「本」と「種類」で単位が揺れる。p14 の表に示される 1 講座分の動画本数の合計を検算で求めた（KNOWN: 検算。原値は Private Evidence に保管）。画面キャプチャの件数表示が何の件数かは示されていない（UNKNOWN） |
 | Inference / Warrant | 会社概要の設立年月と、事例・導入企業の声・監修者の実績との時期の関係（前身事業やグループ会社の実績か等）は説明されていない（UNKNOWN）。Group B との資本関係・位置づけも示されていない（UNKNOWN） |
 | Context / Pragmatics | p34 ではサービス名を主語として「グループの一員」と述べ、上場企業グループへの所属を「継続性」の根拠として配置している。p34 の Group B の所在地と p36 の Company A の所在地は同じ表記だが、両者の関係は説明されていない |
 | Commitment / Presented Meaning | 「最高品質のカリキュラム」（p16）、「グループの経営基盤の上で継続する」（p34）と、品質と提供継続の保証に近い形で提示される |
@@ -179,7 +179,7 @@
 | F-02 | MU-07 市場の成長性 | p6, p5 | Inference / Warrant | INFERENCE_GAP | 生成AI市場（世界）全体の需要額が、AI 研修事業の成長性の根拠として使われているが、両者をつなぐ Warrant が示されていない | UNTRACEABLE | INFERRED | p6 グラフ題、p5 |
 | F-03 | MU-09 労働人口の減少、IT 人材・AI 人材の不足 | p7 | Inference / Warrant | INFERENCE_GAP | 労働人口予測グラフの出典が明示されていない（Public Source 3 の表記がどの図に係るか不明）。異なるシナリオ名が並ぶ。人材不足から AI 研修事業の需要への推論は示されていない。右パネルの見出しの年と、扱う不足数の年が異なる | PARTIALLY TRACEABLE | UNKNOWN | p7 左グラフ、右パネル、出典表記 |
 | F-04 | MU-10 特定の年数のうちに仕事がなくなると考える人が年々増加 | p8 | Context / Pragmatics | TITLE_BODY_GAP | グラフは「確信」「不安」の 2 時点比較で、見出しの年数や「仕事がなくなる」はグラフに無い。2 時点から「年々」と一般化。増加幅の大きい「確信」ではなく「不安」だけを見出しにしている | PARTIALLY TRACEABLE | KNOWN（グラフ内容）／INFERRED（読み替え） | p8 見出し、グラフの題・注・数値 |
-| F-05 | MU-11 今乗らないと手遅れになる | p9 | Commitment | NARRATIVE | p6-p8 の統計の直後に、根拠の提示なしに損失回避の結論が置かれ、画像で強められている。何に対して「手遅れ」なのかも示されていない | UNTRACEABLE | UNKNOWN | p9、p6-p8 からの配置 |
+| F-05 | MU-11 今乗らないと手遅れになる | p9 | Commitment | NARRATIVE | p6-p8 の統計の直後に、根拠の提示なしに損失回避の結論が置かれ、画像（Visual observation: 排水口とこぼれた硬貨の写真）で強められている。何に対して「手遅れ」なのかも示されていない | UNTRACEABLE | UNKNOWN | p9、p6-p8 からの配置 |
 | F-06 | MU-06 最も重要な理想的条件が整っている | p5 | Inference / Warrant | AMPLIFICATION | 3 要素の列挙から「最も重要」「理想的」への推論の根拠が示されていない。カードには要素名だけで数値・説明が無い | UNTRACEABLE | INFERRED | p5 |
 | F-07 | MU-12 AI 研修事業の市場での位置、最も理想的なビジネス環境 | p10 | Context / Pragmatics | VISUAL_CLAIM | 2 軸の図に円を置き右上を「最も理想的」とするが、AI 研修事業がその位置にあることを示すデータ・配置の根拠が無い。他の事業との比較も示されていない | UNTRACEABLE | UNKNOWN | p10 図 |
 | F-08 | MU-03 すべて解決 | p3（p2→p4） | Commitment | AMPLIFICATION | p2 の 5 つの悩みと p4 の 3 項目の対応が明示されず、「すべて」の範囲が示されていない | PARTIALLY TRACEABLE | INFERRED | p2, p3, p4 |
