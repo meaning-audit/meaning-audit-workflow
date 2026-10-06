@@ -183,9 +183,11 @@ HR-02: 公開版は匿名化しています。実名入りの原本は Private E
 
 ---
 
-## 準備: Test 01-2: Known-Source AI-Generated Presentation
+## 記録: Test 01-2: NotebookLM Presentation — Human-Directed Focus（2026-10-06）
 
-Status: 準備済み・監査対象待ち（監査は開始していない）
+Status: **FROZEN — FIELD EVIDENCE**（2026-10-06）。Run 02A、Run 02B、Comparison、Human Review、Errata、Runtime Deviations、Remaining Unknowns、Candidate Interpretations、Failure Pattern 候補を Field Evidence として固定したもので、Workflow の正しさを認定するものではありません。
+
+Run の正式な呼称は **Run 02A / Run 02B** です。下の「実行設計」と「観察項目」は開始前の計画で、計画段階の呼称 Run 01A / Run 01B のまま残しています（Run 01A = Run 02A、Run 01B = Run 02B）。
 
 Test 01-1 では、元資料が無く生成来歴も不明だったため、Test 01 本来の目的（AI 生成プレゼンでの Mode A と Mode B の比較）を検証できませんでした。Test 01-2 はその条件を満たすケースで行います。
 
@@ -246,3 +248,33 @@ Test 01-1 では、元資料が無く生成来歴も不明だったため、Test
 5. 公開の扱い（公開リポジトリに置けるか）
 6. Audit Purpose（空欄なら既定値）
 
+### Test Metadata（Freeze 時点）
+
+| 項目 | 内容 |
+|---|---|
+| Test ID | Test 01-2 |
+| 正式名称 | NotebookLM Presentation — Human-Directed Focus |
+| Date | 2026-10-06 |
+| Audit Object | NotebookLM で生成されたプレゼンテーション資料。リポジトリには置いていない（[input/README.md](input/README.md)） |
+| Generation Tool | NotebookLM（Human の申告） |
+| Post-generation Human Editing | NONE（Human の申告） |
+| Human-directed Focus | あり。Human 由来の編集意図として Test Metadata に記録（Workflow 本体への項目追加は HOLD） |
+| Source Set | PARTIALLY KNOWN（Source Set の不完全性は名称に入れず、Metadata で保持） |
+| Run 02A | Mode A: Source-Grounded Audit — COMPLETED |
+| Run 02B | Mode B: Artifact-Only Audit（Blind） — COMPLETED |
+| Comparison | COMPLETED |
+| Human Review | COMPLETED（Human Visual Confirmation を含む） |
+| Status | FROZEN — FIELD EVIDENCE |
+| Evidence / Reports | 詳細な Evidence と Report（Artifact、Source、各 Run の Report、Comparison、Human Review 記録、Errata）はすべて Private。公開方針は PUBLIC SUMMARY ONLY で、Public Summary は未作成 |
+| Workflow / Prompt / Skill | 変更していない |
+
+### Limitations（公開範囲）
+
+- Run 02A は、Test 01-2 の記録構造を作るために本 README と test-log を読んだ同一コンテキストで実行しており、完全な独立コンテキストではない
+- Run 02B は、開始前の計画とは異なり、Prompt ファイルではなく Skill `meaning-audit` を使い、入力解像度も Run 02A と異なる条件で実行した
+- Comparison は Run 02B と同じ監査者・同じセッションで実施した（計画の独立性手順 4 とは異なる）
+- Artifact 1 件、各 Mode 1 Run ずつの記録であり、件数を方法の一般的な性能として解釈しない
+
+### Freeze の意味
+
+FROZEN — FIELD EVIDENCE は、Workflow v1.0 が validated されたこと、Source-Grounded Audit が完全であること、Artifact-Only Audit の再現性が保証されたこと、Failure Pattern 候補が正式に採用されたこと、Candidate Interpretations が理論として確定したこと、未特定の Web Source が存在しないことを意味しません。

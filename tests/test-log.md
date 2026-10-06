@@ -9,7 +9,7 @@ Meaning Audit Workflow v1.0 のテスト実行記録です。1 回の監査実�
 | Test | 対象 | 想定 Class | 想定 Mode | 状態 |
 |---|---|---|---|---|
 | 01-1 | Presentation Artifact — Generation Provenance Unknown | A | Artifact-Only | FROZEN — FIELD EVIDENCE |
-| 01-2 | Known-Source AI-Generated Presentation | A | Source-Grounded ＋ Artifact-Only（独立実行） | 準備済み・監査対象待ち |
+| 01-2 | NotebookLM Presentation — Human-Directed Focus | A（主）/ C（副次） | Source-Grounded（Source Set: PARTIALLY KNOWN）＋ Artifact-Only（Blind） | FROZEN — FIELD EVIDENCE |
 | 02 | Published Article | B | 未定 | 未実施 |
 | 03 | Proposal / Analysis Document | C | 未定 | 未実施 |
 
@@ -128,3 +128,50 @@ FROZEN — FIELD EVIDENCE
 
 FROZEN — FIELD EVIDENCE は、このテストで起きたこと、AI の Audit Report、Human Review、Finding の修正、失敗の観察、Unknown を Field Evidence として固定したことを意味する。Workflow v1.0 が validated されたこと、Finding が普遍的に正しいこと、AI Audit の再現性が保証されたこと、Method が final であることは意味しない。
 
+
+### 2026-10-06 Test 01-2: NotebookLM Presentation — Human-Directed Focus
+
+- 対象: [examples/01-ai-presentation](../examples/01-ai-presentation/)
+- Date: 2026-10-06
+- Audit Object: NotebookLM で生成されたプレゼンテーション資料。リポジトリには置いていない
+- Generation Tool: NotebookLM ／ Post-generation Human Editing: NONE（いずれも Human の申告）
+- Human-directed Focus: あり（Human 由来の編集意図。Test Metadata として記録）
+- Source Set: PARTIALLY KNOWN（既知の Source 2 点 ＋ 特定できていない Web Source）
+- Run 02A: Mode A（Source-Grounded） — COMPLETED。Prompt: `prompts/source-grounded-audit.md`（無改変）
+- Run 02B: Mode B（Artifact-Only、Blind） — COMPLETED。Source・Generation Provenance・Run 02A の結果を渡さずに実行。Skill `meaning-audit` を使用
+- Comparison（Run 02A / 02B）: COMPLETED
+- Human Review: COMPLETED（Human Visual Confirmation を含む）
+- Document Class: Presentation / Visualization（主）/ Proposal / Analysis / Decision Document（副次）
+- Evidence / Reports: すべて Private（PUBLIC SUMMARY ONLY。Public Summary は未作成）
+
+#### 観察（一般化）
+
+- Workflow どおりに動いたこと:
+  - Source Set が一部しか既知でない状態でも、Mode A のまま進め、既知の Source で確認できない Claim を `UNKNOWN` として保持する運用が機能した
+  - Generation Provenance と Human-directed Focus が既知であることで、Human が与えた Focus 自体を Framing の Finding にせず、その内側の Meaning Shift だけを対象にできた
+  - Source がある場合、Meaning Trace の Evidence / Source 欄に原文を置けるため、Stage 間の差が特定しやすかった
+- 記録した課題（Failure Pattern・Post-Freeze Candidate としては登録していない）:
+  - Source と Artifact の間で規範的な強さが変化する例があった。既存の Status では、「Source が同じ論点をより弱く扱っている」場合と「Source に記述が無い」場合が同じラベルになりうる
+  - Source Set が PARTIALLY KNOWN のときの UNSUPPORTED の使い方。Human Decision: 成果物が特定の既知 Source に明示的に帰属している場合は UNSUPPORTED を使用でき、帰属が明示されていない Claim は UNKNOWN を優先する
+  - Finding ID の枝番、Finding Type 欄への Status の語の記入、1 Finding に複数 Status といった Runtime Deviation が Run 02A にあった（原本は変更せず、正式な表記としては採用しない）
+  - テキスト層の無い成果物で、転記と図の読み取りが Run 間で分かれた（Errata で訂正。原本は変更しない）
+  - 同じ現象を、一方の Run は Meaning Trace に記述し、もう一方は Finding として起票するという記録の差があった
+- Comparison で挙がった Failure Pattern 候補 7 件は、すべて HOLD（採番しない、既存の FP 系列へ統合しない、Workflow へ反映しない）。Test 01-2 の Field Evidence としてのみ保持する
+- Candidate Interpretations（Artifact-Only Audit の検出範囲、Source による判定の分解、Traceability と Support の違い、Source による疑念の解消）は Human-reviewed interpretation candidate として保持し、理論上の結論にはしない。Traceability と Support の違いは、Workflow の既存定義の確認でもある
+
+#### Limitations
+
+- Run 02A は完全な独立コンテキストではない（記録構造の作成のため本 test-log と Test 01 の README を読んだ同一コンテキストで実行）
+- Run 02B は、開始前の計画と異なる Prompt（Skill）と入力解像度で実行した
+- Comparison は Run 02B と同じ監査者・同じセッションで実施した
+
+#### Workflow / Prompt / Skill の修正
+
+- 修正しない。failure-patterns.md と post-freeze-candidates.md も変更していない
+
+```text
+Test 01-2 Status:
+FROZEN — FIELD EVIDENCE
+```
+
+FROZEN — FIELD EVIDENCE は、Run 02A、Run 02B、Comparison、Human Review、Errata、Runtime Deviations、Remaining Unknowns、Candidate Interpretations、Failure Pattern 候補を Field Evidence として固定したことを意味する。Workflow v1.0 が validated されたこと、Source-Grounded Audit が完全であること、Artifact-Only Audit の再現性が保証されたこと、Failure Pattern 候補が正式に採用されたこと、Candidate Interpretations が理論として確定したこと、未特定の Web Source が存在しないことは意味しない。

@@ -33,3 +33,16 @@
 ## Source（元資料）
 
 なし。資料内で言及されている外部資料（Public Source 1〜3）の中身は提供されていない。このため Run 01A（Source-Grounded Audit）は実行していない。
+
+---
+
+## Test 01-2 の監査対象と Source
+
+リポジトリにはいずれのファイルも置いていません。公開方針は PUBLIC SUMMARY ONLY で、監査対象と Source は Private Evidence Layer に保管しています。
+
+| 項目 | 内容 |
+|---|---|
+| 監査対象 | NotebookLM で生成されたプレゼンテーション資料（Generation Tool: NotebookLM、Post-generation Human Editing: NONE。いずれも Human の申告） |
+| Human-directed Focus | あり（Human 由来の編集意図） |
+| Source Set | PARTIALLY KNOWN。公的機関が公開している資料 2 点が既知。生成時にはそれ以外の Web Source も使われていたが、特定できていない |
+| リポジトリへの配置 | しない（監査対象・Source とも） |
