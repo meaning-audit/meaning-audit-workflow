@@ -1,5 +1,3 @@
-<!-- Packaged from Meaning Audit v1.1 canonical assembly (workflow/finding-types-v1.1.md). Packaging revision: repository-specific paths and maintainer instructions were replaced so that this skill is self-contained. Method, Status, Finding Types, values, and Workflow steps are unchanged. -->
-
 # Finding Types v1.1
 
 - Name: Finding Types
@@ -7,7 +5,7 @@
 - Status: RELEASED（v1.1、2026-10-09）
 - Basis: Finding Types v1.0。Finding Type の一覧と定義は変更していない。記入先の欄の名前だけを Output Contract v1.1 に合わせた
 
-Finding Type は、Finding Ledger で Meaning Shift の種類を記録するための運用ラベルです。新しい理論ではなく、Document Class ごとの重点観点（付録 A（Document Classes）。workflow-v1.1.md）を、監査で使える名前に揃えたものです。
+Finding Type は、Finding Ledger で Meaning Shift の種類を記録するための運用ラベルです。新しい理論ではなく、Document Class ごとの重点観点（[../docs/document-classes-v1.1.md](../docs/document-classes-v1.1.md)）を、監査で使える名前に揃えたものです。
 
 1 つの Finding に複数の種類が当てはまる場合は、主たる種類を 1 つ記録し、Content（必要なら Annotation）で補足します。Finding Type の欄に括弧書き・注記・複数の値を入れません。
 
@@ -38,7 +36,7 @@ Finding Type は、Finding Ledger で Meaning Shift の種類を記録するた�
 
 1. Content に、何が起きているかを具体的に書く（Finding Type の欄に括弧で書かない）
 2. 新しい Finding Type を作らない
-3. 繰り返し現れる場合は、Human Review Required に挙げ、必要に応じて Human Review で記録する
+3. 繰り返し現れる場合は、[../tests/post-freeze-candidates.md](../tests/post-freeze-candidates.md) に候補として記録する
 
 ## Finding Type と Status の関係
 

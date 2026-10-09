@@ -1,5 +1,3 @@
-<!-- Packaged from Meaning Audit v1.1 canonical assembly (docs/limitations-v1.1.md). Packaging revision: repository-specific paths and maintainer instructions were replaced so that this skill is self-contained. Method, Status, Finding Types, values, and Workflow steps are unchanged. -->
-
 # Limitations
 
 - Name: Limitations
@@ -21,7 +19,7 @@ Meaning Audit Workflow v1.1 の既知の限界です。テストを通じて更�
 - AI が図・画像・グラフ・レイアウトを正しく読めない場合がある。特に Class A では、Visual Claim の監査が不完全になり得る
 - 監査に使う表現（抽出テキスト、描画されたページ、画像など）によって、読み取れる意味が変わり得る。テキストがあっても、描画された表現と同じとは限らない
 - AI が作った監査出力、比較出力、派生した要約、件数、その他の二次的な記録は、それ自体が誤りを含み得て、Human Review を要し得る。Runtime の検証はこれを減らすが、Human Review を置き換えない
-- AI が自身の一般知識を判定に持ち込むことがある。この Skill では Evidence Boundary への記録を求めているが、完全には防げない
+- AI が自身の一般知識を判定に持ち込むことがある。プロンプトでは Evidence Boundary への記録を求めているが、完全には防げない
 - 長い文書では、Meaning Unit の抽出漏れが起きやすい
 - 同じ入力でも、実行ごと・モデルごとに Finding が変わり得る（v1.0 では再現性を検証していない）
 - AI は UNKNOWN を推測で埋める傾向がある。Human Review で確認する
@@ -36,4 +34,4 @@ Meaning Audit Workflow v1.1 の既知の限界です。テストを通じて更�
 ## 運用上の注意
 
 - 監査対象・元資料に機密情報や個人情報が含まれる場合、AI サービスへの投入可否を事前に確認する
-- 監査対象や Report を公開する場合は、著作権と利用許諾を確認する
+- 公開リポジトリに監査対象を置く場合は、著作権と利用許諾を確認する

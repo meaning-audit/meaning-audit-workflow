@@ -1,11 +1,13 @@
 cff-version: 1.2.0
 message: "If you use this workflow, please cite it as below."
 title: "Meaning Audit Workflow"
-version: "1.0"
+version: "1.1"
+date-released: "2026-10-09"
 type: software
-# TODO(Human Review): replace with the actual author(s) / organization.
 authors:
-  - name: "Meaning Audit"
+  - family-names: "Dokai"
+    given-names: "Chiaki"
+    affiliation: "Onmitsu Inc."
 repository-code: "https://github.com/meaning-audit/meaning-audit-workflow"
 abstract: >-
   An operational workflow for tracing where meaning is added, transformed,
